@@ -104,55 +104,11 @@ public class Recepcionista extends Persona {
         }
     }
 
-    public void ModificarPasajero(int amodf) {
-
-        if (amodf < clientes.size()) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("1. Para modificar nombre");
-            System.out.println("2. Para modificar apellido");
-            System.out.println("3. Para modificar origen");
-            System.out.println("4. Para modificar dni");
-            System.out.println("5. Para modificar direccion");
-            System.out.println("6. Para modificar email");
-            System.out.println("6. Para modificar telefono");
-
-            System.out.print("Ingrese la opcion: ");
-            while (!scanner.hasNextInt()) {
-                System.out.print("Ingrese la opcion: ");
-                scanner.next();
-            }
-            int opcion = scanner.nextInt();
-
-            switch (opcion) {
-                case 1:
-                    clientes.get(amodf).setNombre(nombre);
-
-                    break;
-                case 2:
-                    clientes.get(amodf).setApellido(apellido);
-                    break;
-                case 3:
-                    clientes.get(amodf).setOrigen(origen);
-
-                    break;
-                case 4:
-                    clientes.get(amodf).setDni(dni);
-                    break;
-                case 5:
-                    clientes.get(amodf).setDireccion(direccion);
-
-                    break;
-                case 6:
-                    clientes.get(amodf).setEmail(email);
-                    break;
-                case 7:
-                    clientes.get(amodf).setTelefono(telefono);
-                    break;
-                default:
-                    break;
-            }
+    public void ModificarPasajero(Pasajero p) throws PasajeroNoEncontradoException{
+        if (this.clientes.contains(p)) {
+            clientes.add();
         }
-
+        throw new PasajeroNoEncontradoException("El pasajero " + p + " no existe en la agenda");
     }
 
     @Override

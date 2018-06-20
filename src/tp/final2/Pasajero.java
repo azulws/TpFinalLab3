@@ -47,6 +47,34 @@ public class Pasajero extends Persona {
     public ArrayList<Habitacion> getPieza() {
         return pieza;
     }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    public void setPedido(ArrayList<Reserva> Pedido) {
+        this.Pedido = Pedido;
+    }
+
+    public void setPieza(ArrayList<Habitacion> pieza) {
+        this.pieza = pieza;
+    }
     
     
 
