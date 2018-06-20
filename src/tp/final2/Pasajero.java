@@ -8,8 +8,8 @@ public class Pasajero extends Persona {
     private String email;
     private String dni;
     private String origen;
-    private ArrayList<Reserva> Pedido;
-    protected ArrayList<Habitacion> pieza;
+    private List<Reserva> Pedido;
+    protected List<Habitacion> pieza;
 
     public Pasajero(String nombre, String apellido, int telefono, String direccion, String email, String dni, String origen) {
         super(nombre, apellido);
@@ -40,11 +40,11 @@ public class Pasajero extends Persona {
         return origen;
     }
 
-    public ArrayList<Reserva> getPedido() {
+    public List<Reserva> getPedido() {
         return Pedido;
     }
 
-    public ArrayList<Habitacion> getPieza() {
+    public List<Habitacion> getPieza() {
         return pieza;
     }
     

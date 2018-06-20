@@ -8,8 +8,8 @@ public class Reserva extends Habitacion {
     private int CodigoReserva;
     private LocalDate Entrada;
     private LocalDate Salida;
-    private ArrayList<Habitacion> pieza;//una sola no es arrayList
-    private ArrayList<Pasajero> clientes;
+    private List<Habitacion> pieza;//una sola no es arrayList
+    private List<Pasajero> clientes;
 
     public Reserva() {
     }
@@ -20,11 +20,6 @@ public class Reserva extends Habitacion {
         this.pieza = pieza;
         this.clientes = clientes;
     }
-
-  
-
-  
-
    
 
     public int getCodigoReserva() {
@@ -39,11 +34,11 @@ public class Reserva extends Habitacion {
         return Salida;
     }
 
-    public ArrayList<Habitacion> getPieza() {
+    public List<Habitacion> getPieza() {
         return pieza;
     }
 
-    public ArrayList<Pasajero> getClientes() {
+    public List<Pasajero> getClientes() {
         return clientes;
     }
 
