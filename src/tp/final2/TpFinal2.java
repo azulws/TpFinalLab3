@@ -25,6 +25,9 @@ public class TpFinal2 {
         System.out.println("asd");
         System.out.println("asd");
                 System.out.println("hola");
+                 System.out.println("wwe");
+        System.out.println("ecw");
+                System.out.println("fdfs");
     
     }
 
