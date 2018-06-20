@@ -3,13 +3,51 @@ package tp.final2;
 import java.util.*;
 
 public class Pasajero extends Persona {
-
+    private int telefono;
+    private String direccion;
+    private String email;
+    private String dni;
+    private String origen;
     private ArrayList<Reserva> Pedido;
     protected ArrayList<Habitacion> pieza;
 
     public Pasajero(String nombre, String apellido, int telefono, String direccion, String email, String dni, String origen) {
-        super(nombre, apellido, telefono, direccion, email, dni, origen);
+        super(nombre, apellido);
+        this.telefono=telefono;
+        this.direccion=direccion;
+        this.email=email;
+        this.dni=dni;
+        this.origen=origen;
     }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public ArrayList<Reserva> getPedido() {
+        return Pedido;
+    }
+
+    public ArrayList<Habitacion> getPieza() {
+        return pieza;
+    }
+    
     
 
 

@@ -26,24 +26,6 @@ public class Recepcionista extends Persona {
         return contraseña;
     }
 
-    private Recepcionista ingresoSistemaRecepsion(String usuarios, String contraseña) {
-
-        if (recepcion == null) {
-            return null;
-        }
-        for (Recepcionista personn : recepcion) {
-            if (personn.getEmail().equals(usuarios) && personn.getContraseña().equals(contraseña)) {
-                return personn;
-            } else {
-                System.out.println("El usuario o la contraseña es incorrecta");
-            }
-
-        }
-
-        return null;
-
-    }
-
     public Pasajero buscarPasajero(String dni) {
         for (Pasajero turista : clientes) {
             if (turista != null && turista.getDni().equals(dni)) {
@@ -91,20 +73,15 @@ public class Recepcionista extends Persona {
     }
 
     public Habitacion checkIn(int pass,Pasajero invitado, int CodigoReserva) {
-        Recepcionista recepcion = new Recepcionista(this.usuario, this.contraseña, this.nombre, this.apellido);
+        
         if (!this.contraseña.equals(pass)) {
 
-             invitado = this.buscarPasajero(dni);
+            invitado = this.buscarPasajero(invitado.getDni());
 
-            if (invitado == null) {
-                invitado = new Pasajero(nombre, apellido,telefono, direccion, email,dni,origen);
-                recepcion.alquiler(CodigoReserva,invitado.nombre);
-            }
             Habitacion room = buscarReserva(CodigoReserva);
-            if (room != null && this.buscarReserva(CodigoReserva) == null) {
-                this.checkIn(pass,invitado, CodigoReserva);
+            if (room.getEstado() == room.estado.DISPONIBLE) {
+                
                 room.setListadoDisponible(room.getListadoDisponible() - 1);
-
             }
         }
 
