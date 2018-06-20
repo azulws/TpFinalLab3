@@ -22,7 +22,13 @@ public class TpFinal2 {
         System.out.println(uno);
         
         Gson gson = new Gson();
+<<<<<<< HEAD
         
+=======
+        System.out.println("asd");
+        System.out.println("asd");
+    
+>>>>>>> parent of 2f8e3c0... sd
     }
 
 }
