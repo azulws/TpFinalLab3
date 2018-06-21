@@ -5,10 +5,10 @@ import java.util.*;
 
 public class Recepcionista extends Persona {
 
-    private ArrayList<Pasajero> clientes;
-    private ArrayList<Habitacion> pieza;
-    private ArrayList<Reserva> alquileres;
-    private ArrayList<Recepcionista> recepcion;
+    private List<Pasajero> clientes;
+    private List<Habitacion> pieza;
+    private List<Reserva> alquileres;
+    private List<Recepcionista> recepcion;
     private String usuario;
     private String contraseña;
 
@@ -16,6 +16,10 @@ public class Recepcionista extends Persona {
         super(nombre, apellido);
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.clientes=new ArrayList<>();
+        this.pieza=new ArrayList<>();
+        this.alquileres=new ArrayList<>();
+        this.recepcion=new ArrayList<>();
     }
 
     public String getUsuario() {
@@ -74,7 +78,7 @@ public class Recepcionista extends Persona {
 
 //    public Habitacion checkIn(int pass,Pasajero invitado, int CodigoReserva) {
 //        
-//        if (!this.contraseña.equals(pass)) {
+//          if (!this.contraseña.equals(pass)) {
 //
 //            invitado = this.buscarPasajero(invitado.getDni());
 //
@@ -105,7 +109,7 @@ public class Recepcionista extends Persona {
     }
     
     public void ModificarPasajero(Pasajero p,String dni) throws PasajeroNoEncontradoException{
-//        if (this.buscarPasajero(p.getDni()).equals(dni)) {
+//        if (this.buscarPasajero(p.getDni().equals(dni)) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Para modificar nombre");
             System.out.println("2. Para modificar apellido");
