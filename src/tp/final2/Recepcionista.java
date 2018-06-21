@@ -103,10 +103,53 @@ public class Recepcionista extends Persona {
             pieza.toString();
         }
     }
-
+    
     public void ModificarPasajero(Pasajero p) throws PasajeroNoEncontradoException{
         if (this.clientes.contains(p)) {
-            clientes.add();
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("1. Para modificar nombre");
+            System.out.println("2. Para modificar apellido");
+            System.out.println("3. Para modificar origen");
+            System.out.println("4. Para modificar dni");
+            System.out.println("5. Para modificar direccion");
+            System.out.println("6. Para modificar email");
+            System.out.println("7. Para modificar telefono");
+
+            System.out.print("Ingrese la opcion: ");
+            while (!scanner.hasNextInt()) {
+                System.out.print("Ingrese la opcion: ");
+                scanner.next();
+            }
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    p.setNombre(p.getNombre());
+
+                    break;
+                case 2:
+                    p.setApellido(p.getApellido());
+                    break;
+                case 3:
+                    p.setOrigen(p.getOrigen());
+
+                    break;
+                case 4:
+                    p.setDni(p.getDni());
+                    break;
+                case 5:
+                    p.setDireccion(p.getDireccion());
+
+                    break;
+                case 6:
+                    p.setEmail(p.getEmail());
+                    break;
+                case 7:
+                    p.setTelefono(p.getTelefono());
+                    break;
+                default:
+                    break;
+            }
         }
         throw new PasajeroNoEncontradoException("El pasajero " + p + " no existe en la agenda");
     }
