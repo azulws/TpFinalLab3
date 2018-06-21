@@ -12,11 +12,11 @@ public class Recepcionista extends Persona {
     private String usuario;
     private String contraseña;
 
-    public Recepcionista(String usuario, String contraseña, String nombre, String apellido) {
+    public Recepcionista(String usuario, String contraseña, String nombre, String apellido, List<Pasajero> clientes) {
         super(nombre, apellido);
         this.usuario = usuario;
         this.contraseña = contraseña;
-        this.clientes=new ArrayList<>();
+        this.clientes=clientes;
         this.pieza=new ArrayList<>();
         this.alquileres=new ArrayList<>();
         this.recepcion=new ArrayList<>();
@@ -30,13 +30,13 @@ public class Recepcionista extends Persona {
         return contraseña;
     }
 
-    public Pasajero buscarPasajero(Pasajero p) {
+    public Pasajero buscarPasajero(String dni) throws PasajeroNoEncontradoException{       
         for (Pasajero turista : this.clientes) {
-            if (turista != null) {
+            if (turista.getDni().equals(dni)) {
                 return turista;
             }
         }
-        return null;
+        throw new PasajeroNoEncontradoException("no se encontro");
     }
 
     public Reserva buscarReserva(int CodigoReserva) {
@@ -108,16 +108,17 @@ public class Recepcionista extends Persona {
         }
     }
     
-    public void ModificarPasajero(Pasajero p,String dni) throws PasajeroNoEncontradoException{
-//        if (this.buscarPasajero(p.getDni().equals(dni)) {
+    public boolean ModificarPasajero(Pasajero p,String dni) throws PasajeroNoEncontradoException{
+        if (p.getDni().equals(dni)) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Para modificar nombre");
             System.out.println("2. Para modificar apellido");
-            System.out.println("3. Para modificar origen");
+            System.out.println("3. Para modificar telefono");
             System.out.println("4. Para modificar dni");
             System.out.println("5. Para modificar direccion");
             System.out.println("6. Para modificar email");
-            System.out.println("7. Para modificar telefono");
+            System.out.println("7. Para modificar origen");
+            System.out.println("8. Salir de modificar");
 
             System.out.print("Ingrese la opcion: ");
             while (!scanner.hasNextInt()) {
@@ -128,37 +129,59 @@ public class Recepcionista extends Persona {
 
             switch (opcion) {
                 case 1:
-                    p.setNombre(p.getNombre());
-
+                    System.out.println("Ingrese nombre:");
+                    String nombre = scanner.next();
+                    p.setNombre(nombre);
+                    ModificarPasajero(p,dni);
                     break;
                 case 2:
-                    p.setApellido(p.getApellido());
+                    System.out.println("Ingrese apellido:");
+                    String apellido = scanner.next();
+                    p.setApellido(apellido);
+                    ModificarPasajero(p,dni);
                     break;
                 case 3:
-                    p.setOrigen(p.getOrigen());
-
+                    System.out.println("Ingrese telefono:");
+                    int telefono = scanner.nextInt();
+                    p.setTelefono(telefono);
+                    ModificarPasajero(p, dni);
                     break;
                 case 4:
-                    p.setDni(p.getDni());
+                    System.out.println("Ingrese dni:");
+                    String dnix = scanner.next();
+                    p.setDni(dnix);
+                    ModificarPasajero(p,dni);
                     break;
                 case 5:
-                    p.setDireccion(p.getDireccion());
-
+                    System.out.println("Ingrese direccion:");
+                    String direccion = scanner.next();
+                    p.setDireccion(direccion);
+                    ModificarPasajero(p,dni);
                     break;
                 case 6:
-                    p.setEmail(p.getEmail());
+                    
+                    System.out.println("Ingrese e-mail:");
+                    String email = scanner.next();
+                    p.setEmail(email);
+                    ModificarPasajero(p,dni);
                     break;
                 case 7:
-                    p.setTelefono(p.getTelefono());
+                    System.out.println("Ingrese origen:");
+                    String origen = scanner.next();
+                    p.setOrigen(origen);
+                    ModificarPasajero(p,dni);
                     break;
-                default:
+                case 8:
                     break;
             }
+            return true;
         }
-//        throw new PasajeroNoEncontradoException("El pasajero " + p + " no existe en la agenda");
-    }
+        throw new PasajeroNoEncontradoException("El pasajero " + p + " no existe");
+    } 
 
-//    @Override
-//    public String toString() {
-//        return "Recepcionista{" + "nombre=" + nombre + ", apellido=" + apellido + "usuario=" + usuario + '}';
-//    }
+    @Override
+    public String toString() {
+        return "Recepcionista{" + "nombre=" + nombre + ", apellido=" + apellido + "usuario=" + usuario + '}';
+    }
+    
+}
