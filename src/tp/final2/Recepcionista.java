@@ -26,9 +26,9 @@ public class Recepcionista extends Persona {
         return contraseña;
     }
 
-    public Pasajero buscarPasajero(String dni) {
-        for (Pasajero turista : clientes) {
-            if (turista != null && turista.getDni().equals(dni)) {
+    public Pasajero buscarPasajero(Pasajero p) {
+        for (Pasajero turista : this.clientes) {
+            if (turista != null) {
                 return turista;
             }
         }
@@ -44,23 +44,23 @@ public class Recepcionista extends Persona {
         return null;
     }
 
-    public Reserva alquiler(int CodigoReserva, String nombreCliente) {
-        Reserva piezas = buscarReserva(CodigoReserva);
-        Pasajero cliente = buscarPasajero(nombreCliente);
-        if (pieza != null && cliente != null) {
-            piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
-            Reserva alquiler = new Reserva(LocalDate.now(), pieza, clientes);
-
-            for (int i = 0; i < alquileres.size(); i++) {
-                if (alquileres == null) {
-                    alquileres.add(alquiler);
-                    break;
-                }
-            }
-            return alquiler;
-        }
-        return null;
-    }
+//    public Reserva alquiler(int CodigoReserva, String nombreCliente) {
+//        Reserva piezas = buscarReserva(CodigoReserva);
+//        Pasajero cliente = buscarPasajero(nombreCliente);
+//        if (pieza != null && cliente != null) {
+//            piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
+//            Reserva alquiler = new Reserva(LocalDate.now(), pieza, clientes);
+//
+//            for (int i = 0; i < alquileres.size(); i++) {
+//                if (alquileres == null) {
+//                    alquileres.add(alquiler);
+//                    break;
+//                }
+//            }
+//            return alquiler;
+//        }
+//        return null;
+//    }
 
     public Habitacion libre() {
         for (Habitacion room : pieza) {
@@ -72,21 +72,21 @@ public class Recepcionista extends Persona {
         return null;
     }
 
-    public Habitacion checkIn(int pass,Pasajero invitado, int CodigoReserva) {
-        
-        if (!this.contraseña.equals(pass)) {
-
-            invitado = this.buscarPasajero(invitado.getDni());
-
-            Habitacion room = buscarReserva(CodigoReserva);
-            if (room.getEstado() == room.estado.DISPONIBLE) {
-                
-                room.setListadoDisponible(room.getListadoDisponible() - 1);
-            }
-        }
-
-        return null;
-    }
+//    public Habitacion checkIn(int pass,Pasajero invitado, int CodigoReserva) {
+//        
+//        if (!this.contraseña.equals(pass)) {
+//
+//            invitado = this.buscarPasajero(invitado.getDni());
+//
+//            Habitacion room = buscarReserva(CodigoReserva);
+//            if (room.getEstado() == room.estado.DISPONIBLE) {
+//                
+//                room.setListadoDisponible(room.getListadoDisponible() - 1);
+//            }
+//        }
+//
+//        return null;
+//    }
 
     public void CancelarReserva(int CodigoReserva) {
         for (int i = 0; i < alquileres.size(); i++) {
@@ -104,8 +104,8 @@ public class Recepcionista extends Persona {
         }
     }
     
-    public void ModificarPasajero(Pasajero p) throws PasajeroNoEncontradoException{
-        if (this.clientes.contains(p)) {
+    public void ModificarPasajero(Pasajero p,String dni) throws PasajeroNoEncontradoException{
+//        if (this.buscarPasajero(p.getDni()).equals(dni)) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Para modificar nombre");
             System.out.println("2. Para modificar apellido");
@@ -151,12 +151,10 @@ public class Recepcionista extends Persona {
                     break;
             }
         }
-        throw new PasajeroNoEncontradoException("El pasajero " + p + " no existe en la agenda");
+//        throw new PasajeroNoEncontradoException("El pasajero " + p + " no existe en la agenda");
     }
 
-    @Override
-    public String toString() {
-        return "Recepcionista{" + "nombre=" + nombre + ", apellido=" + apellido + "usuario=" + usuario + '}';
-    }
-
-}
+//    @Override
+//    public String toString() {
+//        return "Recepcionista{" + "nombre=" + nombre + ", apellido=" + apellido + "usuario=" + usuario + '}';
+//    }
