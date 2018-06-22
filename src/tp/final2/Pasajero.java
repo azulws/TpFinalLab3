@@ -91,9 +91,9 @@ public class Pasajero extends Persona {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.dni);
-        return hash;
+        int resp = dni.hashCode();
+        resp = 31 * resp; //Preguntar si se vuelve a sumar el hasCode de dni
+        return resp;
     }
 
     @Override
