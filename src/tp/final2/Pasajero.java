@@ -81,7 +81,7 @@ public class Pasajero extends Persona {
 
     public void CancelarReserva(int CodigoReserva) {
         for (Reserva Pe : Pedido) {
-            if (Pe.getCodigoReserva()) {
+            if (Pe.getCodigoReserva() == CodigoReserva) {
                 Pedido.remove(Pe);
                 break;
             }

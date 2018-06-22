@@ -47,21 +47,6 @@ public class Reserva extends Habitacion {
         return clientes;
     }
 
-    @Override
-    public int hashCode() {
-        int resp = 7;
-        resp = 31 * resp + this.codigoReserva;
-        return resp;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null) {return false;}
-        if (getClass() != o.getClass()) {return false;}
-        Reserva other = (Reserva) o;
-        return Objects.equals(codigoReserva, other.codigoReserva);
-    }
-
 
     public Tipo getTipo() {
         return tipo;
