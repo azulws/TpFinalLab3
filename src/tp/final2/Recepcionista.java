@@ -48,23 +48,23 @@ public class Recepcionista extends Persona {
         return null;
     }
 
-//    public Reserva alquiler(int CodigoReserva, String nombreCliente) {
-//        Reserva piezas = buscarReserva(CodigoReserva);
-//        Pasajero cliente = buscarPasajero(nombreCliente);
-//        if (pieza != null && cliente != null) {
-//            piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
-//            Reserva alquiler = new Reserva(LocalDate.now(), pieza, clientes);
-//
-//            for (int i = 0; i < alquileres.size(); i++) {
-//                if (alquileres == null) {
-//                    alquileres.add(alquiler);
-//                    break;
-//                }
-//            }
-//            return alquiler;
-//        }
-//        return null;
-//    }
+    //    public Reserva alquiler(int CodigoReserva, String nombreCliente) {
+    //        Reserva piezas = buscarReserva(CodigoReserva);
+    //        Pasajero cliente = buscarPasajero(nombreCliente);
+    //        if (pieza != null && cliente != null) {
+    //            piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
+    //            Reserva alquiler = new Reserva(LocalDate.now(), pieza, clientes);
+    //
+    //            for (int i = 0; i < alquileres.size(); i++) {
+    //                if (alquileres == null) {
+    //                    alquileres.add(alquiler);
+    //                    break;
+    //                }
+    //            }
+    //            return alquiler;
+    //        }
+    //        return null;
+    //    }
 
     public Habitacion libre() {
         for (Habitacion room : pieza) {
@@ -91,16 +91,6 @@ public class Recepcionista extends Persona {
 //
 //        return null;
 //    }
-
-    public void CancelarReserva(int CodigoReserva) {
-        for (int i = 0; i < alquileres.size(); i++) {
-            if (alquileres != null && alquileres.get(i).getCodigoReserva() == CodigoReserva) {
-                alquileres = null;
-                break;
-            }
-        }
-
-    }
 
     public void ListadoHabitacionesDisponibles() {
         for (int a = 0; a < pieza.size(); a++) {

@@ -80,9 +80,9 @@ public class Pasajero extends Persona {
 
 
     public void CancelarReserva(int CodigoReserva) {
-        for (int i = 0; i < Pedido.size(); i++) {
-            if (Pedido.get(i) != null && Pedido.get(i).getCodigoReserva() == CodigoReserva) {
-                Pedido.remove(i);
+        for (Reserva Pe : Pedido) {
+            if (Pe.getCodigoReserva()) {
+                Pedido.remove(Pe);
                 break;
             }
         }

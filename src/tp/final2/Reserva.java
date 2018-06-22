@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Reserva extends Habitacion {
 
-    private int CodigoReserva;
-    private LocalDate Entrada;
-    private LocalDate Salida;
+    private int codigoReserva;
+    private LocalDate entrada;
+    private LocalDate salida;
     private ArrayList<Habitacion> pieza;//una sola no es arrayList
     private ArrayList<Pasajero> clientes;
 
@@ -16,7 +16,7 @@ public class Reserva extends Habitacion {
 
     public Reserva(LocalDate Entrada, ArrayList<Habitacion> pieza, ArrayList<Pasajero> clientes) {
         super();
-        this.Entrada = Entrada;
+        this.entrada = Entrada;
         this.pieza = pieza;
         this.clientes = clientes;
     }
@@ -28,15 +28,15 @@ public class Reserva extends Habitacion {
    
 
     public int getCodigoReserva() {
-        return CodigoReserva;
+        return codigoReserva;
     }
 
     public LocalDate getEntrada() {
-        return Entrada;
+        return entrada;
     }
 
     public LocalDate getSalida() {
-        return Salida;
+        return salida;
     }
 
     public ArrayList<Habitacion> getPieza() {
@@ -47,6 +47,21 @@ public class Reserva extends Habitacion {
         return clientes;
     }
 
+    @Override
+    public int hashCode() {
+        int resp = 7;
+        resp = 31 * resp + this.codigoReserva;
+        return resp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {return false;}
+        if (getClass() != o.getClass()) {return false;}
+        Reserva other = (Reserva) o;
+        return Objects.equals(codigoReserva, other.codigoReserva);
+    }
+
 
     public Tipo getTipo() {
         return tipo;
@@ -54,7 +69,7 @@ public class Reserva extends Habitacion {
 
     @Override
     public String toString() {
-        return "Reserva{" + "CodigoReserva=" + CodigoReserva + ", Entrada=" + Entrada + ", Salida=" + Salida + ", pieza=" + pieza + ", clientes=" + clientes + '}';
+        return "Reserva{" + "CodigoReserva=" + codigoReserva + ", Entrada=" + entrada + ", Salida=" + salida + ", pieza=" + pieza + ", clientes=" + clientes + '}';
     }
 
 
