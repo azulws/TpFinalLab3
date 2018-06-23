@@ -92,13 +92,26 @@ public class Recepcionista extends Persona {
 
     public Habitacion checkIn(int num) {
         Habitacion cuarto=BuscarHabitacion(num);
-        if(cuarto!=null){
+        if(cuarto!=null && cuarto.getEstado()==cuarto.estado.DISPONIBLE){
            cuarto.setEstado(Habitacion.Estado.OCUPADA);
            return cuarto; 
         }
         else
         {
-            System.out.println("No esta diponible");
+            System.out.println(" La habitacion esta diponible");
+        }
+        return null;
+    }
+    
+      public Habitacion checkout(int num) {
+        Habitacion cuarto=BuscarHabitacion(num);
+        if(cuarto!=null && cuarto.getEstado()==cuarto.estado.OCUPADA){
+           cuarto.setEstado(Habitacion.Estado.NO_DISPONIBLE);
+           return cuarto; 
+        }
+        else
+        {
+            System.out.println("La habitacion sigue diponible");
         }
         return null;
     }
