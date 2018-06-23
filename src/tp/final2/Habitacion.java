@@ -11,12 +11,6 @@ public class Habitacion extends Hotel {
     protected Estado estado;
     protected Tipo tipo;
 
-    public enum Estado {
-        DISPONIBLE,
-        NO_DISPONIBLE,
-        OCUPADA;
-    }
-
     public enum Tipo {
         INDIVIDUAL,
         DOBLE,
