@@ -50,7 +50,7 @@ public class Recepcionista extends Persona {
         return null;
     }
     
-       public Habitacion BuscarHabitacion(int num)  {
+       public Habitacion buscarHabitacion(int num)  {
            for (Habitacion encontrada : this.pieza) {
                if (encontrada.getNumeroHabitacion()==num) {
                System.out.println("Habitacion encontrada");
@@ -62,12 +62,12 @@ public class Recepcionista extends Persona {
            return null;
         } 
        
-        public Reserva alquiler(int CodigoReserva, String dni) throws PasajeroNoEncontradoException  {
+        public Reserva alquiler(int CodigoReserva, String dni,int p,int c) throws PasajeroNoEncontradoException  {
             Reserva piezas = buscarReserva(CodigoReserva);
             Pasajero cliente = buscarPasajero(dni);
             if (piezas != null && cliente != null) {
                 piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
-                Reserva alquiler = new Reserva(pieza,clientes);
+                Reserva alquiler = new Reserva(pieza.get(p),clientes.get(c));
     
                 for (Reserva cuarto: alquileres) {
                     if (alquiler == null) {
@@ -82,7 +82,7 @@ public class Recepcionista extends Persona {
         
     public Habitacion libre() {
         for (Habitacion room : pieza) {
-            if (room.estado.OCUPADA == null) {
+            if (room.estado.OCUPADO == null) {
                 return room;
 
             }
@@ -91,9 +91,9 @@ public class Recepcionista extends Persona {
     }
 
     public Habitacion checkIn(int num) {
-        Habitacion cuarto=BuscarHabitacion(num);
+        Habitacion cuarto=buscarHabitacion(num);
         if(cuarto!=null && cuarto.getEstado()==cuarto.estado.DISPONIBLE){
-           cuarto.setEstado(Habitacion.Estado.OCUPADA);
+           cuarto.setEstado(cuarto.estado.OCUPADO);
            return cuarto; 
         }
         else
@@ -104,9 +104,22 @@ public class Recepcionista extends Persona {
     }
     
       public Habitacion checkout(int num) {
-        Habitacion cuarto=BuscarHabitacion(num);
-        if(cuarto!=null && cuarto.getEstado()==cuarto.estado.OCUPADA){
-           cuarto.setEstado(Habitacion.Estado.NO_DISPONIBLE);
+        Habitacion cuarto=buscarHabitacion(num);
+        if(cuarto!=null && cuarto.getEstado()==cuarto.estado.OCUPADO){
+           cuarto.setEstado(cuarto.estado.NO_DISPONIBLE);
+           return cuarto; 
+        }
+        else
+        {
+            System.out.println("La habitacion sigue diponible");
+        }
+        return null;
+    }
+      
+          public Habitacion tareas(int num) {
+        Habitacion cuarto=buscarHabitacion(num);
+        if(cuarto!=null && cuarto.getEstado()==cuarto.estado.NO_DISPONIBLE){
+           cuarto.setEstado(cuarto.estado.NO_DISPONIBLE);
            return cuarto; 
         }
         else
@@ -117,12 +130,15 @@ public class Recepcionista extends Persona {
     }
 
     public void ListadoHabitacionesDisponibles() {
-        for (int a = 0; a < pieza.size(); a++) {
-            pieza.toString();
+        for (Habitacion room : pieza) {
+            if (room.estado.OCUPADO == null) {
+                room.toString();
+
+            }
         }
     }
 
-    public boolean ModificarPasajero(Pasajero p, String dni) throws PasajeroNoEncontradoException {
+    public boolean modificarPasajero(Pasajero p, String dni) throws PasajeroNoEncontradoException {
         if (p.getDni().equals(dni)) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Para modificar nombre");
@@ -146,44 +162,44 @@ public class Recepcionista extends Persona {
                     System.out.println("Ingrese nombre:");
                     String nombre = scanner.next();
                     p.setNombre(nombre);
-                    ModificarPasajero(p, dni);
+                    modificarPasajero(p, dni);
                     break;
                 case 2:
                     System.out.println("Ingrese apellido:");
                     String apellido = scanner.next();
                     p.setApellido(apellido);
-                    ModificarPasajero(p, dni);
+                    modificarPasajero(p, dni);
                     break;
                 case 3:
                     System.out.println("Ingrese telefono:");
                     int telefono = scanner.nextInt();
                     p.setTelefono(telefono);
-                    ModificarPasajero(p, dni);
+                    modificarPasajero(p, dni);
                     break;
                 case 4:
                     System.out.println("Ingrese dni:");
                     String dnix = scanner.next();
                     p.setDni(dnix);
-                    ModificarPasajero(p, dni);
+                    modificarPasajero(p, dni);
                     break;
                 case 5:
                     System.out.println("Ingrese direccion:");
                     String direccion = scanner.next();
                     p.setDireccion(direccion);
-                    ModificarPasajero(p, dni);
+                    modificarPasajero(p, dni);
                     break;
                 case 6:
 
                     System.out.println("Ingrese e-mail:");
                     String email = scanner.next();
                     p.setEmail(email);
-                    ModificarPasajero(p, dni);
+                    modificarPasajero(p, dni);
                     break;
                 case 7:
                     System.out.println("Ingrese origen:");
                     String origen = scanner.next();
                     p.setOrigen(origen);
-                    ModificarPasajero(p, dni);
+                    modificarPasajero(p, dni);
                     break;
                 case 8:
                     break;

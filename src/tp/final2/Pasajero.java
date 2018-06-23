@@ -88,6 +88,9 @@ public class Pasajero extends Persona {
         }
 
     }
+    
+    
+  
 
     @Override
     public int hashCode() {

@@ -40,13 +40,11 @@ public class TpFinal2 {
 //          }catch(PasajeroNoEncontradoException e){
 //              System.out.println(e.getMessage());
 //          }
-
         Habitacion pepita = new Habitacion(1, Habitacion.Tipo.INDIVIDUAL);
         Habitacion esme = new Habitacion(2, Habitacion.Tipo.DOBLE);
         Habitacion dasd = new Habitacion(3, Habitacion.Tipo.SUITES);
         Habitacion ass = new Habitacion(4, Habitacion.Tipo.TRIPLE);
         Habitacion pep = new Habitacion(5, Habitacion.Tipo.INDIVIDUAL);
-        //recep.checkIn();
         habitaciones.add(pepita);
         habitaciones.add(esme);
         habitaciones.add(dasd);
@@ -55,6 +53,10 @@ public class TpFinal2 {
         System.out.println(habitaciones);
         recep.checkIn(4);
         System.out.println(ass.toString());
+        recep.checkout(4);
+        System.out.println(ass.toString());
+        Reserva reserv = new Reserva(pep,p);
+        System.out.println(reserv);
     }
 
 }
