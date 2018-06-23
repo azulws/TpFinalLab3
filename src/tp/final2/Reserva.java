@@ -20,13 +20,7 @@ public class Reserva extends Habitacion {
         this.pieza = pieza;
         this.clientes = clientes;
     }
-
-  
-
-  
-
    
-
     public int getCodigoReserva() {
         return codigoReserva;
     }
