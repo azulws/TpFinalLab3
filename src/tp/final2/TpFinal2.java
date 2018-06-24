@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
-import tp.final2.menu.BienvenidoMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -48,6 +47,7 @@ public class TpFinal2 {
             System.out.println(pasajero);
         System.out.println(p7);
         Habitacion pepita = new Habitacion(1, Habitacion.Tipo.INDIVIDUAL);
+        
 //        Habitacion esme = new Habitacion(2, Habitacion.Tipo.DOBLE);
 //        Habitacion dasd = new Habitacion(3, Habitacion.Tipo.SUITES);
 //        Habitacion ass = new Habitacion(4, Habitacion.Tipo.TRIPLE);
@@ -95,6 +95,7 @@ public class TpFinal2 {
 //        System.out.println(ass.toString());
 //        recep.tareas(4,2);
 //        System.out.println(ass.toString());
+        BienvenidoMenu();
         
     }
     
@@ -142,4 +143,3 @@ public class TpFinal2 {
     }
         
     }
-}

@@ -23,7 +23,7 @@ public class AdminMenu {
         switch (seleccion) {
             case 1:
                 MenuCreacion create = new MenuCreacion(); //modificar para que se puedan agregar de tipo recep/admin
-
+                    
                 break;
             case 2:
                 // admin.backup();  //funcion del admin que pasa los datos del Tresset Al Archivo. Esta en main **Probar**

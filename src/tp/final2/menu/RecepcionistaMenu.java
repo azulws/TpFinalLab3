@@ -16,7 +16,7 @@ Scanner scanner = new Scanner(System.in);
         System.out.println("4. Realizar Reservas");
         System.out.println("5. Listado de Habitaciones disponibles");
         System.out.println("5. Volver Menu principal");
-        System.out.print("Ingrese la opcion: ");
+        System.out.print("Ingrese la opcion: "); 
 
         while (!scanner.hasNextInt()) {
             System.out.print("Ingrese la opcion: ");
