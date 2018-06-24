@@ -1,5 +1,6 @@
 package tp.final2;
 
+import com.google.gson.annotations.Expose;
 import java.util.*;
 
 public class Pasajero extends Persona {

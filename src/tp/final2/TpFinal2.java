@@ -9,7 +9,10 @@ import java.util.Scanner;
 import java.util.UUID;
 import tp.final2.menu.BienvenidoMenu;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 
@@ -17,10 +20,11 @@ public class TpFinal2 {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
         ArrayList<Pasajero> pasajero = new ArrayList<Pasajero>();
+         ArrayList<Reserva> reservas = new ArrayList<Reserva>();
         Pasajero p = new Pasajero("agustin", "caceres", 223, "colon 412", "agustin@hotmail.com", "39336482", "argentina");
         Pasajero p1 = new Pasajero("agustin2", "caceres2", 2232, "colon 4122", "agustin@hotmail.com", "39336482", "argentina");
         Pasajero p2 = new Pasajero("agustin3", "caceres3", 2233, "colon 4123", "agustin@hotmail.com", "39336482", "argentina");
@@ -38,10 +42,12 @@ public class TpFinal2 {
         pasajero.add(p5);
         pasajero.add(p6);
         pasajero.add(p7);
-        System.out.println("P= " + pasajero);
-        Serializar(pasajero);
-        
-//        Habitacion pepita = new Habitacion(1, Habitacion.Tipo.INDIVIDUAL);
+        serializar(pasajero);
+            
+            deSerializar(pasajero);
+            System.out.println(pasajero);
+        System.out.println(p7);
+        Habitacion pepita = new Habitacion(1, Habitacion.Tipo.INDIVIDUAL);
 //        Habitacion esme = new Habitacion(2, Habitacion.Tipo.DOBLE);
 //        Habitacion dasd = new Habitacion(3, Habitacion.Tipo.SUITES);
 //        Habitacion ass = new Habitacion(4, Habitacion.Tipo.TRIPLE);
@@ -56,23 +62,43 @@ public class TpFinal2 {
 //        Habitacion dasda = new Habitacion(13, Habitacion.Tipo.SUITES);
 //        Habitacion assw = new Habitacion(14, Habitacion.Tipo.TRIPLE);
 //        Habitacion pepq = new Habitacion(15, Habitacion.Tipo.INDIVIDUAL);
-//        habitaciones.add(pepita);
+        habitaciones.add(pepita);
+        
+        recep.ListadoHabitacionesDisponibles();
+        Reserva reserv = new Reserva(pepita, p);
+//        System.out.println(reserv);       
+        try{
+            
+          recep.alquiler(reserv.getCodigoReserva(), "39336482", pepita, p);
+          
+          }
+          catch(PasajeroNoEncontradoException e){
+                  System.out.println(e.getMessage());
+          }
+        reservas.add(reserv);
+          System.out.println(reserv);
+          
+          recep.checkIn(1);
+          
+          System.out.println(pepita);
+          
+          System.out.println(reserv);
+          
 //        habitaciones.add(esme);
 //        habitaciones.add(dasd);
 //        habitaciones.add(ass);
 //        habitaciones.add(pep);
 //        System.out.println(habitaciones);
-//        recep.checkIn(4);
+//        
 //        System.out.println(ass.toString());
 //        recep.checkout(4);
 //        System.out.println(ass.toString());
 //        recep.tareas(4,2);
 //        System.out.println(ass.toString());
-//        Reserva reserv = new Reserva(pep, p);
-//        System.out.println(reserv);
+        
     }
     
-    public static void Serializar (List pasajero){
+    public static void serializar (List pasajero){
         Gson gson = new Gson();
         String strJson=gson.toJson(pasajero);
         
@@ -93,5 +119,27 @@ public class TpFinal2 {
         }
     }
 
+    }
+    public static void deSerializar (ArrayList<Pasajero> p) throws FileNotFoundException{
+        
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("pasajeros.son")));
+        Gson gson = new Gson();
+        List<Pasajero> pasaj = gson.fromJson(bufferedReader, new TypeToken<ArrayList<Pasajero>>(){}.getType());  
+        FileReader reader=null;
+        try{
+        reader= new FileReader("pasajeros.son");
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally{
+            if(reader != null)
+        {
+            try{
+                reader.close();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+        
     }
 }

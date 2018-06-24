@@ -8,7 +8,6 @@ public class Recepcionista extends Persona {
     private List<Pasajero> clientes;
     private List<Habitacion> pieza;
     private List<Reserva> alquileres;
-    private List<Recepcionista> recepcion;
     private String usuario;
     private String contraseña;
 
@@ -18,8 +17,7 @@ public class Recepcionista extends Persona {
         this.contraseña = contraseña;
         this.clientes = clientes;
         this.pieza = pieza;
-        this.alquileres = alquileres;
-        this.recepcion = recepcion;
+        this.alquileres = new ArrayList<>();
     }
     
     
@@ -62,12 +60,12 @@ public class Recepcionista extends Persona {
            return null;
         } 
        
-        public Reserva alquiler(int CodigoReserva, String dni,int p,int c) throws PasajeroNoEncontradoException  {
+        public Reserva alquiler(int CodigoReserva, String dni,Habitacion p,Pasajero c) throws PasajeroNoEncontradoException  {
             Reserva piezas = buscarReserva(CodigoReserva);
             Pasajero cliente = buscarPasajero(dni);
             if (piezas != null && cliente != null) {
                 piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
-                Reserva alquiler = new Reserva(pieza.get(p),clientes.get(c));
+                Reserva alquiler = new Reserva(p,c);
     
                 for (Reserva cuarto: alquileres) {
                     if (alquiler == null) {
@@ -137,10 +135,9 @@ public class Recepcionista extends Persona {
     }
 
     public void ListadoHabitacionesDisponibles() {
-        for (Habitacion room : pieza) {
-            if (room.estado.OCUPADO == null) {
-                room.toString();
-
+        for (Habitacion room : this.pieza) {
+            if (room.estado.DISPONIBLE != null) {
+                System.out.println(room);
             }
         }
     }
