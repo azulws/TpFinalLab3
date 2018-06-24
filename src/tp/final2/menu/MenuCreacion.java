@@ -58,7 +58,7 @@ public class MenuCreacion {
         String contrasenia = scanner.next();
           System.out.println("Ingrese email:");
         String email = scanner.next();
-        Administrador nuevo = new Administrador(usuario, contrasenia,email, nombre, apellido);
+        Administrador nuevo = new Administrador(usuario, contrasenia, nombre, apellido);
         System.out.println("Se ha creado un administrador");
         creacion();
     }

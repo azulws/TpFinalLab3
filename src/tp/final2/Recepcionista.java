@@ -11,12 +11,12 @@ public class Recepcionista extends Persona {
     private String usuario;
     private String contraseña;
 
-    public Recepcionista(String usuario, String contraseña, String nombre, String apellido, List<Pasajero> clientes,List<Habitacion> pieza) {
+    public Recepcionista(String usuario, String contraseña, String nombre, String apellido) {
         super(nombre, apellido);
         this.usuario = usuario;
         this.contraseña = contraseña;
-        this.clientes = clientes;
-        this.pieza = pieza;
+        this.clientes = new ArrayList<>();;
+        this.pieza = new ArrayList<>();;
         this.alquileres = new ArrayList<>();
     }
     
