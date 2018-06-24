@@ -15,12 +15,10 @@ public class Recepcionista extends Persona {
         super(nombre, apellido);
         this.usuario = usuario;
         this.contraseña = contraseña;
-        this.clientes = new ArrayList<>();;
-        this.pieza = new ArrayList<>();;
+        this.clientes = new ArrayList<>();
+        this.pieza = new ArrayList<>();
         this.alquileres = new ArrayList<>();
     }
-    
-    
 
     public String getUsuario() {
         return usuario;
@@ -34,11 +32,13 @@ public class Recepcionista extends Persona {
         for (Pasajero turista : this.clientes) {
             if (turista.getDni().equals(dni)) {
                 return turista;
-            }
+            }else{
+       throw new PasajeroNoEncontradoException("no se encontro");
         }
-        throw new PasajeroNoEncontradoException("no se encontro");
     }
-
+        return null;
+    }
+    
     public Reserva buscarReserva(int CodigoReserva) {
         for (Reserva alquiler : this.alquileres) {
             if (alquiler != null && alquiler.getCodigoReserva() == CodigoReserva) {
@@ -47,37 +47,37 @@ public class Recepcionista extends Persona {
         }
         return null;
     }
-    
-       public Habitacion buscarHabitacion(int num)  {
-           for (Habitacion encontrada : this.pieza) {
-               if (encontrada.getNumeroHabitacion()==num) {
-               System.out.println("Habitacion encontrada");
+
+    public Habitacion buscarHabitacion(int num) {
+        for (Habitacion encontrada : this.pieza) {
+            if (encontrada.getNumeroHabitacion() == num) {
+
                 return encontrada;
-                   
+
             }
-               
-           }
-           return null;
-        } 
-       
-        public Reserva alquiler(int CodigoReserva, String dni,Habitacion p,Pasajero c) throws PasajeroNoEncontradoException  {
-            Reserva piezas = buscarReserva(CodigoReserva);
-            Pasajero cliente = buscarPasajero(dni);
-            if (piezas != null && cliente != null) {
-                piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
-                Reserva alquiler = new Reserva(p,c);
-    
-                for (Reserva cuarto: alquileres) {
-                    if (alquiler == null) {
-                        alquileres.add(alquiler);
-                        break;
-                    }
-                }
-                return alquiler;
-            }
-            return null;
+
         }
-        
+        return null;
+    }
+
+    public Reserva alquiler(int CodigoReserva, String dni, Habitacion p, Pasajero c) throws PasajeroNoEncontradoException {
+        Reserva piezas = buscarReserva(CodigoReserva);
+        Pasajero cliente = buscarPasajero(dni);
+        if (piezas != null && cliente != null) {
+            piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
+            Reserva alquiler = new Reserva(p, c);
+
+            for (Reserva cuarto : alquileres) {
+                if (alquiler == null) {
+                    alquileres.add(alquiler);
+                    break;
+                }
+            }
+            return alquiler;
+        }
+        return null;
+    }
+
     public Habitacion libre() {
         for (Habitacion room : pieza) {
             if (room.estado.OCUPADO == null) {
@@ -89,31 +89,27 @@ public class Recepcionista extends Persona {
     }
 
     public Habitacion checkIn(int num) {
-        Habitacion cuarto=buscarHabitacion(num);
-        if(cuarto!=null && cuarto.getEstado()==cuarto.estado.DISPONIBLE){
-           cuarto.setEstado(cuarto.estado.OCUPADO);
-           return cuarto; 
-        }
-        else
-        {
+        Habitacion cuarto = buscarHabitacion(num);
+        if (cuarto != null && cuarto.getEstado() == cuarto.estado.DISPONIBLE) {
+            cuarto.setEstado(cuarto.estado.OCUPADO);
+            return cuarto;
+        } else {
             System.out.println(" La habitacion esta diponible");
         }
         return null;
     }
-    
-      public Habitacion checkout(int num) {
-        Habitacion cuarto=buscarHabitacion(num);
-        if(cuarto!=null && cuarto.getEstado()==cuarto.estado.OCUPADO){
-           cuarto.setEstado(cuarto.estado.NO_DISPONIBLE);
-           return cuarto; 
-        }
-        else
-        {
+
+    public Habitacion checkout(int num) {
+        Habitacion cuarto = buscarHabitacion(num);
+        if (cuarto != null && cuarto.getEstado() == cuarto.estado.OCUPADO) {
+            cuarto.setEstado(cuarto.estado.NO_DISPONIBLE);
+            return cuarto;
+        } else {
             System.out.println("La habitacion sigue diponible");
         }
         return null;
     }
-      
+
     public Habitacion tareas(int num, int t) {
         Habitacion cuarto = buscarHabitacion(num);
         if (cuarto != null && cuarto.getEstado() == cuarto.estado.NO_DISPONIBLE) {
