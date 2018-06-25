@@ -642,7 +642,7 @@ public class TpFinal2 {
 
                 break;
             case 2:
-                serializar(pasaj, recep);
+                backup(pasaj, recep);
                 AdminMenu(admin, recep, pasaj, pieza, reserva);
                 break;
             case 3:
@@ -657,7 +657,7 @@ public class TpFinal2 {
         }
     }
 
-    public static void serializar(ArrayList<Pasajero> pasajero, ArrayList<Recepcionista> empleados) {
+    public static void backup(ArrayList<Pasajero> pasajero, ArrayList<Recepcionista> empleados) {
         Gson gson = new Gson();
         System.out.println("=== Menu de Backup ===");
         System.out.println("1. Pasajeros"); // Crea un file de pasajeros
@@ -708,6 +708,28 @@ public class TpFinal2 {
                 }
                 break;
         }
+    }
+    
+    public static void serializarReservas (ArrayList<Reserva> reservacion)
+    {
+        Gson gson = new Gson();
+        String strReservas = gson.toJson(reservacion);
+        
+        FileWriter archivoReservas = null;
+                try {
+                    archivoReservas = new FileWriter("reservas.son");
+                    archivoReservas.write(strReservas);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (archivoReservas != null) {
+                        try {
+                            archivoReservas.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
     }
 
     public static void deSerializar(List p, File file) throws FileNotFoundException {
