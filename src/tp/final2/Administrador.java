@@ -28,6 +28,11 @@ public class Administrador extends Persona {
         }
         this.clientes.add(p);
     }
-    
+
+    @Override
+    public String toString() {
+        return "Administrador{" + "clientes=" + clientes + ", administracion=" + administracion + ", usuario=" + usuario + '}';
+    }
+
 }
 
