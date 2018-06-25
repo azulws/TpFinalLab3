@@ -2,9 +2,9 @@
 package tp.final2;
 
 public enum Estado {
-    DISPONIBLE("Calzado"),
-    NO_DISPONIBLE("Remeras"),
-    OCUPADO("Buzos");
+    DISPONIBLE("Disponible"),
+    NO_DISPONIBLE("No_Disponible"),
+    OCUPADO("Ocupado");
 
   private String value;
 

@@ -23,17 +23,11 @@ public class Habitacion extends Hotel {
         this.NumeroHabitacion = NumeroHabitacion;
         this.estado = this.estado.DISPONIBLE;
         this.tipo = tipo;
-        this.id=UUID.randomUUID();
     }
 
     public Habitacion() {
     }
 
-  
-    public UUID getId() {
-        return id;
-    }
-    
     
 
     public int getNumeroHabitacion() {
@@ -44,8 +38,6 @@ public class Habitacion extends Hotel {
         this.estado = estado;
     }
 
-
-     
     public Estado getEstado() {
         return estado;
     }

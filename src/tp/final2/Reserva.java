@@ -18,7 +18,7 @@ public class Reserva extends Habitacion {
         super();
         this.codigoReserva=ThreadLocalRandom.current().nextInt(0,1000);
         this.entrada = LocalDate.now();
-        this.salida=LocalDate.of(2018, Month.of(ThreadLocalRandom.current().nextInt(6,7)), ThreadLocalRandom.current().nextInt(0,31));
+        this.salida=LocalDate.of(2018, Month.of(ThreadLocalRandom.current().nextInt(7,8)), ThreadLocalRandom.current().nextInt(1,26));
         this.pieza=pieza;
         this.clientes=clientes;
     }

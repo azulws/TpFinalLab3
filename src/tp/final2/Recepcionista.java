@@ -60,8 +60,8 @@ public class Recepcionista extends Persona {
         return null;
     }
 
-    public Reserva alquiler(int CodigoReserva, String dni, Habitacion p, Pasajero c) throws PasajeroNoEncontradoException {
-        Reserva piezas = buscarReserva(CodigoReserva);
+    public Reserva alquiler(int hab, String dni, Habitacion p, Pasajero c) throws PasajeroNoEncontradoException {
+        Habitacion piezas = buscarHabitacion(hab);
         Pasajero cliente = buscarPasajero(dni);
         if (piezas != null && cliente != null) {
             piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
@@ -75,10 +75,8 @@ public class Recepcionista extends Persona {
             }
             return alquiler;
         }
-        else
-        {
-           throw new PasajeroNoEncontradoException("no se encontro"); 
-        }
+      return null;
+              
     }
 
     public Habitacion libre() {
@@ -131,85 +129,6 @@ public class Recepcionista extends Persona {
             System.out.println("La habitacion sigue diponible");
         }
         return null;
-    }
-
-//    public void ListadoHabitacionesDisponibles() {
-//        for (Habitacion room : this.pieza) {
-//            if (room.estado.DISPONIBLE != null) {
-//                System.out.println(room);
-//            }
-//        }
-//    }
-
-    public boolean modificarPasajero(Pasajero p, String dni) throws PasajeroNoEncontradoException {
-        if (p.getDni().equals(dni)) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("1. Para modificar nombre");
-            System.out.println("2. Para modificar apellido");
-            System.out.println("3. Para modificar telefono");
-            System.out.println("4. Para modificar dni");
-            System.out.println("5. Para modificar direccion");
-            System.out.println("6. Para modificar email");
-            System.out.println("7. Para modificar origen");
-            System.out.println("8. Salir de modificar");
-
-            System.out.print("Ingrese la opcion: ");
-            while (!scanner.hasNextInt()) {
-                System.out.print("Ingrese la opcion: ");
-                scanner.next();
-            }
-            int opcion = scanner.nextInt();
-
-            switch (opcion) {
-                case 1:
-                    System.out.println("Ingrese nombre:");
-                    String nombre = scanner.next();
-                    p.setNombre(nombre);
-                    modificarPasajero(p, dni);
-                    break;
-                case 2:
-                    System.out.println("Ingrese apellido:");
-                    String apellido = scanner.next();
-                    p.setApellido(apellido);
-                    modificarPasajero(p, dni);
-                    break;
-                case 3:
-                    System.out.println("Ingrese telefono:");
-                    int telefono = scanner.nextInt();
-                    p.setTelefono(telefono);
-                    modificarPasajero(p, dni);
-                    break;
-                case 4:
-                    System.out.println("Ingrese dni:");
-                    String dnix = scanner.next();
-                    p.setDni(dnix);
-                    modificarPasajero(p, dni);
-                    break;
-                case 5:
-                    System.out.println("Ingrese direccion:");
-                    String direccion = scanner.next();
-                    p.setDireccion(direccion);
-                    modificarPasajero(p, dni);
-                    break;
-                case 6:
-
-                    System.out.println("Ingrese e-mail:");
-                    String email = scanner.next();
-                    p.setEmail(email);
-                    modificarPasajero(p, dni);
-                    break;
-                case 7:
-                    System.out.println("Ingrese origen:");
-                    String origen = scanner.next();
-                    p.setOrigen(origen);
-                    modificarPasajero(p, dni);
-                    break;
-                case 8:
-                    break;
-            }
-            return true;
-        }
-        throw new PasajeroNoEncontradoException("El pasajero " + p + " no existe");
     }
 
     @Override
