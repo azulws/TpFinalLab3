@@ -6,15 +6,14 @@ import tp.final2.Recepcionista;
 
 
 public class RecepcionistaMenu {
-    public void imprimir() { 
+    public void imprimir(Recepcionista recep) { 
 Scanner scanner = new Scanner(System.in);
 
         System.out.println("=== Menu de Recepcionista ===");
-        System.out.println("2. Crear Administrador");
-        System.out.println("2. Realizar CheckIN");
-        System.out.println("3. Realizar CheckOUT");
-        System.out.println("4. Realizar Reservas");
-        System.out.println("5. Listado de Habitaciones disponibles");
+        System.out.println("1. Realizar CheckIN");
+        System.out.println("2. Realizar CheckOUT");
+        System.out.println("3. Realizar Reservas");
+        System.out.println("4. Listado de Habitaciones disponibles");
         System.out.println("5. Volver Menu principal");
         System.out.print("Ingrese la opcion: "); 
 
@@ -26,13 +25,13 @@ Scanner scanner = new Scanner(System.in);
 
         switch (seleccion) {
             case 1:
-                MenuCreacion create = new MenuCreacion();
-            case 2: // Realizar checkin
-                /*
-                recep.checkIn(123, agustinc, )*/
-                break;
-            case 3: // Realizar checkout
-                //recep.checkOut();
+                     System.out.println("Ingrese numero de habitacion para el checkin:");
+                int NumeroHabitacioncheckin= scanner.nextInt();
+                recep.checkIn(NumeroHabitacioncheckin);
+            case 2: // Realizar checkout
+                    System.out.println("Ingrese numero de habitacion para el checkout:");
+                int NumeroHabitacion= scanner.nextInt();
+                recep.checkout(NumeroHabitacion);
                 break;
             case 4:  // Realizar Reservas
                 //recep.alquiler();

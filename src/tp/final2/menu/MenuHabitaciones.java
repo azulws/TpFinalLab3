@@ -1,13 +1,16 @@
 
 package tp.final2.menu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import tp.final2.Habitacion;
+import tp.final2.Habitacion.Tipo;
 
 
 public class MenuHabitaciones {
      private static Scanner scanner = new Scanner(System.in);
 
-    public void room() {
+    public void room(Habitacion room) {
 
         System.out.println("=== Menu de Habitaciones ===");
         System.out.println("1 habitacion"); // Muestra todas las habitaciones
@@ -26,14 +29,14 @@ public class MenuHabitaciones {
         switch (seleccion) {
             case 1:
 
-                //nuevaHabitacion();
+                nuevaHabitacion();
                 break;
 
             case 2:
-                this.toString();
+                room.toString();
                 break;
             case 3:
-                //setListadoDisponibles();
+                room.getListadoDisponible();
                 break;
             case 4:
                 RecepcionistaMenu Rc = new RecepcionistaMenu();
@@ -42,15 +45,18 @@ public class MenuHabitaciones {
     }
     
 
-    /*public void nuevaHabitacion() {
-       Habitaciones casa = new Habitaciones(1, Habitaciones.Estado.DISPONIBLE, Habitaciones.Tipo.INDIVIDUAL);
-        Habitaciones casa2 = new Habitaciones(2, Habitaciones.Estado.NO_DISPONIBLE, Habitaciones.Tipo.DOBLE);
-        Habitaciones[] casita = new Habitaciones[2];
-        casita[0] = casa;
-        casita[1] = casa2;
-        HashSet<Habitaciones> hostel = new HashSet<>();
-        for (int a = 0; a < casita.length; a++) {
-            hostel.add(casa);
+    public void nuevaHabitacion() {
+    ArrayList<Habitacion> room = new ArrayList<>();
+        for (int a=1; a<21; a++) {
+            room.add(new Habitacion(a,Tipo.INDIVIDUAL));
+            room.add(new Habitacion(a,Tipo.DOBLE));
+            room.add(new Habitacion(a,Tipo.SUITES));
+            room.add(new Habitacion(a,Tipo.TRIPLE));
+            
+        }
 
-        }*/
-}
+        }
+    
+
+        }
+

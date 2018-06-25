@@ -130,13 +130,13 @@ public class Recepcionista extends Persona {
         return null;
     }
 
-    public void ListadoHabitacionesDisponibles() {
-        for (Habitacion room : this.pieza) {
-            if (room.estado.DISPONIBLE != null) {
-                System.out.println(room);
-            }
-        }
-    }
+//    public void ListadoHabitacionesDisponibles() {
+//        for (Habitacion room : this.pieza) {
+//            if (room.estado.DISPONIBLE != null) {
+//                System.out.println(room);
+//            }
+//        }
+//    }
 
     public boolean modificarPasajero(Pasajero p, String dni) throws PasajeroNoEncontradoException {
         if (p.getDni().equals(dni)) {

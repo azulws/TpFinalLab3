@@ -1,6 +1,7 @@
 package tp.final2.menu;
 
 import java.util.Scanner;
+import tp.final2.Recepcionista;
 
 //el asignar permiso a usuario es cuando el administrador crea un usuario de culquiera de los 3 tipo:admin,pasajero,recepcionista.
 public class BienvenidoMenu {
@@ -13,7 +14,6 @@ public class BienvenidoMenu {
         System.out.println("2. Recepcionista");
         System.out.println("2. Pasajero");
         System.out.print("Ingrese la opcion: ");
-        
         while (!scanner.hasNextInt()) {
             System.out.print("Ingrese la opcion: ");
             scanner.next();
@@ -31,7 +31,7 @@ public class BienvenidoMenu {
                      break;
             case 3:  
                 PasajeroMenu pasa = new PasajeroMenu();
-                pasa.imprimir();
+                pasa.imprimirr();
                      break;
             default: break;
         }

@@ -1,6 +1,7 @@
 
 package tp.final2.menu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import tp.final2.Administrador;
 import tp.final2.Pasajero;
@@ -60,6 +61,8 @@ public class MenuCreacion {
         String email = scanner.next();
         Administrador nuevo = new Administrador(usuario, contrasenia, nombre, apellido);
         System.out.println("Se ha creado un administrador");
+        ArrayList<Administrador> admin=new ArrayList<>();
+        admin.add(nuevo);
         creacion();
     }
 
@@ -76,6 +79,8 @@ public class MenuCreacion {
         String email = scanner.next();
         Recepcionista nuevo = new Recepcionista(usuario, contrasenia, nombre, apellido);
         System.out.println("Se ha creado un administrador");
+         ArrayList<Recepcionista> recep=new ArrayList<>();
+        recep.add(nuevo);
         creacion();
     }
 
@@ -95,6 +100,9 @@ public class MenuCreacion {
         System.out.println("Ingrese origen:");
         String origen = scanner.next();
         Pasajero nuevo = new Pasajero(nombre, apellido, telefono, direccion, email, dni, origen);
+         System.out.println("Se ha creado un pasajero");
+         ArrayList<Pasajero> pasaj=new ArrayList<>();
+        pasaj.add(nuevo);
         creacion();
     }
 }
