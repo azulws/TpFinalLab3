@@ -14,17 +14,330 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
-import tp.final2.menu.BienvenidoMenu;
+import tp.final2.Administrador;
+import static tp.final2.TpFinal2.MenuHabitaciones;
 
 public class TpFinal2 {
 
+    private static Scanner scanner = new Scanner(System.in);
+
     //private static Scanner scanner = new Scanner(System.in);
- 
-    public static void main(String[] args) throws FileNotFoundException {
-        BienvenidoMenu menu = new  BienvenidoMenu();
-        menu.imprimirMenu();
+    public static void main(String[] args) //throws FileNotFoundException 
+    {
+        ArrayList<Recepcionista> recep = new ArrayList<>();
+        ArrayList<Administrador> admin = new ArrayList<>();
+        ArrayList<Pasajero> pasaj = new ArrayList<>();
+        ArrayList<Habitacion> room = new ArrayList<>();
+        BienvenidoMenu(admin, recep, pasaj, room);
     }
-//
+
+    static void BienvenidoMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza) {
+
+        System.out.println("=== Bienvenido al Hotel ===");
+        System.out.println("1. Administrador");
+        System.out.println("2. Recepcionista");
+        System.out.println("2. Pasajero");
+        System.out.print("Ingrese la opcion: ");
+        while (!scanner.hasNextInt()) {
+            System.out.print("Ingrese la opcion: ");
+            scanner.next();
+        }
+        int seleccion = scanner.nextInt();
+
+        switch (seleccion) {
+            case 1:
+                AdminMenu(admin, recep, pasaj);
+
+                break;
+            case 2:
+                RecepcionistaMenu(admin, recep, pasaj, pieza);
+
+                break;
+            case 3:
+                PasajeroMenu(admin, recep, pasaj);
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    static void MenuHabitaciones(ArrayList<Habitacion> room, ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("=== Menu de Habitaciones ===");
+        System.out.println("1 habitacion"); // Muestra todas las habitaciones
+        System.out.println("2. Ver todas"); // Muestra todas las habitaciones
+        System.out.println("3. Ver disponibles"); // Muestra todas las habitaciones disponibles
+        System.out.println("4. Menu Recepcionista"); //Vuelve al menu de Administrador
+        System.out.print("Ingrese la opcion: ");
+
+        while (!scanner.hasNextInt()) {
+            System.out.print("Ingrese la opcion: ");
+            scanner.next();
+        }
+
+        int seleccion = scanner.nextInt();
+
+        switch (seleccion) {
+            case 1:
+
+                nuevaHabitacion();
+                break;
+
+            case 2:
+                System.out.println(room.toString());
+                break;
+            case 3:
+
+                break;
+            case 4:
+                RecepcionistaMenu(admin, recep, pasaj, pieza);
+                break;
+        }
+    }
+
+    static void RecepcionistaMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room) {
+
+        System.out.println("=== Menu de Recepcionista ===");
+        System.out.println("1. Realizar CheckIN");
+        System.out.println("2. Realizar CheckOUT");
+        System.out.println("3. Realizar Reservas");
+        System.out.println("4. Listado de Habitaciones disponibles");
+        System.out.println("5. Volver Menu principal");
+        System.out.print("Ingrese la opcion: ");
+
+        while (!scanner.hasNextInt()) {
+            System.out.print("Ingrese la opcion: ");
+            scanner.next();
+        }
+        int seleccion = scanner.nextInt();
+        int eleccion;
+        System.out.println("Eleccion del recepcionista:");
+        eleccion = scanner.nextInt();
+        switch (seleccion) {
+            case 1:
+
+                System.out.println("Ingrese numero de habitacion para el checkin:");
+                int NumeroHabitacioncheckin = scanner.nextInt();
+                recep.get(eleccion).checkIn(NumeroHabitacioncheckin);
+            case 2: // Realizar checkout
+                System.out.println("Ingrese numero de habitacion para el checkout:");
+                int NumeroHabitacion = scanner.nextInt();
+                recep.get(eleccion).checkout(NumeroHabitacion);
+                break;
+            case 4:  // Realizar Reservas
+                //recep.get(eleccion).alquiler();
+                break;
+            case 5:
+                MenuHabitaciones(room, admin, recep, pasaj, room);
+                break;
+            case 6:
+                BienvenidoMenu(admin, recep, pasaj, room);
+            default:
+                break;
+        }
+
+    }
+
+    static void MenuCreacion() {
+
+        System.out.println("=== Menu de Creacion ===");
+        System.out.println("1. Agregar Administrador"); // Crea una persona de tipo admin
+        System.out.println("2. Agregar Recepcinista"); // Crea una persona de tipo recep
+        System.out.println("3. Agregar Pasajero"); // Crea una persona de tipo admin
+        System.out.println("4. Volver AdminMenu"); // Crea una persona de tipo admin
+        System.out.print("Ingrese la opcion: ");
+
+        while (!scanner.hasNextInt()) {
+            System.out.print("Ingrese la opcion: ");
+            scanner.next();
+        }
+
+    }
+
+    static void proceso(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room) {
+        int seleccion = scanner.nextInt();
+
+        switch (seleccion) {
+            case 1:
+                System.out.println("Ingrese nombre:");
+                String nombre = scanner.next();
+                System.out.println("Ingrese apellido:");
+                String apellido = scanner.next();
+                System.out.println("Ingrese usuario:");
+                String usuario = scanner.next();
+                System.out.println("Ingrese contraseniaa:");
+                String contrasenia = scanner.next();
+                System.out.println("Ingrese email:");
+                String email = scanner.next();
+                Administrador nuevo = new Administrador(usuario, contrasenia, nombre, apellido);
+                System.out.println("Se ha creado un administrador");
+                admin.add(nuevo);
+                break;
+            case 2:
+                CreaRecep(recep);
+                break;
+            case 3:
+                CreaPasaj(pasaj);
+                break;
+            case 4:
+                AdminMenu(admin, recep, pasaj);
+                break;
+        }
+    }
+
+    static void CreaAdm(ArrayList<Administrador> admin) {
+        System.out.println("Ingrese nombre:");
+        String nombre = scanner.next();
+        System.out.println("Ingrese apellido:");
+        String apellido = scanner.next();
+        System.out.println("Ingrese usuario:");
+        String usuario = scanner.next();
+        System.out.println("Ingrese contraseniaa:");
+        String contrasenia = scanner.next();
+        System.out.println("Ingrese email:");
+        String email = scanner.next();
+        Administrador nuevo = new Administrador(usuario, contrasenia, nombre, apellido);
+        System.out.println("Se ha creado un administrador");
+        admin.add(nuevo);
+        proceso();
+    }
+
+    static void CreaRecep(ArrayList<Recepcionista> recep) {
+        System.out.println("Ingrese nombre:");
+        String nombre = scanner.next();
+        System.out.println("Ingrese apellido:");
+        String apellido = scanner.next();
+        System.out.println("Ingrese usuario:");
+        String usuario = scanner.next();
+        System.out.println("Ingrese contraseniaa:");
+        String contrasenia = scanner.next();
+        System.out.println("Ingrese email:");
+        String email = scanner.next();
+        Recepcionista nuevo = new Recepcionista(usuario, contrasenia, nombre, apellido);
+        System.out.println("Se ha creado un administrador");
+        recep.add(nuevo);
+        proceso();
+    }
+
+    static void CreaPasaj(ArrayList<Pasajero> pasaj) {
+        System.out.println("Ingrese nombre:");
+        String nombre = scanner.next();
+        System.out.println("Ingrese apellido:");
+        String apellido = scanner.next();
+        System.out.println("Ingrese telefono:");
+        int telefono = scanner.nextInt();
+        System.out.println("Ingrese direccion:");
+        String direccion = scanner.next();
+        System.out.println("Ingrese e-mail:");
+        String email = scanner.next();
+        System.out.println("Ingrese dni:");
+        String dni = scanner.next();
+        System.out.println("Ingrese origen:");
+        String origen = scanner.next();
+        Pasajero nuevo = new Pasajero(nombre, apellido, telefono, direccion, email, dni, origen);
+        System.out.println("Se ha creado un pasajero");
+        pasaj.add(nuevo);
+        proceso();
+    }
+
+    static void nuevaHabitacion() {
+        ArrayList<Habitacion> room = new ArrayList<>();
+        for (int a = 1; a < 21; a++) {
+            room.add(new Habitacion(a, Habitacion.Tipo.INDIVIDUAL));
+            room.add(new Habitacion(a, Habitacion.Tipo.DOBLE));
+            room.add(new Habitacion(a, Habitacion.Tipo.SUITES));
+            room.add(new Habitacion(a, Habitacion.Tipo.TRIPLE));
+
+        }
+
+    }
+
+    static void PasajeroMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj) {
+
+        System.out.println("=== Menu de Pasajero ===");
+        System.out.println("1. Mostrar pasajeros"); // Muestra lista pasajeros
+        System.out.println("2. Cancelar Reserva"); //Cancela la reserva
+        System.out.println("3. Volver Menu principal");
+        Pasajero nuevo = null;
+        System.out.print("Ingrese la opcion: ");
+
+        while (!scanner.hasNextInt()) {
+            System.out.print("Ingrese la opcion: ");
+            scanner.next();
+        }
+        int seleccion = scanner.nextInt();
+        int eleccion;
+        System.out.println("Eleccion del Pasajero:");
+        eleccion = scanner.nextInt();
+        //ArrayList<Pasajero> pasajero = new ArrayList<Pasajero>();
+//        try {
+//        deSerializar(pasajero);
+//        } catch (FileNotFoundException ex) {
+//            ex.getMessage();
+//        }
+//    
+
+        switch (seleccion) {
+
+            case 1:
+
+                System.out.println(pasaj.toString());
+
+                break;
+            case 2:
+                System.out.println("Ingrese codigo de reserva");
+                int CodigoReserva = scanner.nextInt();
+                pasaj.get(eleccion).CancelarReserva(CodigoReserva);
+                break;
+            case 3:
+                BienvenidoMenu(admin, recep, pasaj);
+                break;
+            default:
+                break;
+        }
+    }
+
+    static void AdminMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj) {
+
+        System.out.println("=== Menu de Administrador ===");
+        System.out.println("1. Agregar Usuario"); // Crea una persona de tipo admin-recep-pasajero
+        System.out.println("2. Crear backup usuarios"); //Crea un archivo con todos los usuarios registrados en el hotel (incluye empleados)
+        System.out.println("3. Mostrar Administrador"); //Vuelve al menu de Administrador
+        System.out.println("4. Volver Menu principal");
+        System.out.print("Ingrese la opcion: ");
+
+        while (!scanner.hasNextInt()) {
+            System.out.print("Ingrese la opcion: ");
+            scanner.next();
+        }
+        int seleccion = scanner.nextInt();
+        int eleccion;
+        System.out.println("Eleccion del administrador:");
+        eleccion = scanner.nextInt();
+        switch (seleccion) {
+            case 1:
+                MenuCreacion(); //modificar para que se puedan agregar de tipo recep/admin
+
+                break;
+            case 2:
+                //admin.get(eleccion) //funcion del admin que pasa los datos del Tresset Al Archivo. Esta en main **Probar**
+
+                break;
+            case 3:
+                System.out.println(admin.toString());
+                break;
+            case 4:
+                BienvenidoMenu(admin, recep, pasaj);
+                break;
+            default:
+                break;
+        }
+    }
+}
+//    BienvenidoMenu menu = new  BienvenidoMenu();
+//        menu.imprimirMenu();
 //        ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
 //        ArrayList<Pasajero> pasajero = new ArrayList<Pasajero>();
 //         ArrayList<Reserva> reservas = new ArrayList<Reserva>();
@@ -145,5 +458,4 @@ public class TpFinal2 {
 //            }
 //        }
 //    }
-        
-    }
+
