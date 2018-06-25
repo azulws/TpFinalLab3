@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Recepcionista extends Persona {
 
-    private List<Pasajero> clientes;
-    private List<Habitacion> pieza;
-    private List<Reserva> alquileres;
+    transient private List<Pasajero> clientes;
+    transient private List<Habitacion> pieza;
+    transient private List<Reserva> alquileres;
     private String usuario;
     private String contraseña;
 

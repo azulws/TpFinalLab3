@@ -13,6 +13,9 @@ import java.io.FileReader;
 import java.util.List;
 import tp.final2.Administrador;
 import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import jdk.internal.org.objectweb.asm.TypeReference;
+import com.google.gson.reflect.TypeToken;
 import static tp.final2.TpFinal2.MenuHabitaciones;
 
 //    BienvenidoMenu menu = new  BienvenidoMenu();
@@ -95,19 +98,29 @@ import static tp.final2.TpFinal2.MenuHabitaciones;
 //        
 //    }
 //    
-
 public class TpFinal2 {
 
     private static Scanner scanner = new Scanner(System.in);
 
     //private static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) //throws FileNotFoundException 
+    public static void main(String[] args) throws FileNotFoundException //throws FileNotFoundException 
     {
         ArrayList<Recepcionista> recep = new ArrayList<>();
-        ArrayList<Administrador> admin = new ArrayList<>();
+        Recepcionista r1 = new Recepcionista("agustindominguez95@hotmail.com", "123", "Agustin", "Dominguez");
+        Recepcionista r2 = new Recepcionista("azulgotero@hotmail.com", "123", "azul", "gotero");
+        recep.add(r1);
+        recep.add(r2);
         ArrayList<Pasajero> pasaj = new ArrayList<>();
-        ArrayList<Habitacion> room = new ArrayList<>();
-        BienvenidoMenu(admin, recep, pasaj, room);
+        Pasajero p6 = new Pasajero("susana", "gimenez", 2237, "colon 4127", "susana@hotmail.com", "39336482", "argentina");
+        Pasajero p7 = new Pasajero("marcelo", "tineli", 2238, "colon 5041", "marcelo@hotmail.com", "33315151", "argentina");
+        pasaj.add(p6);
+        pasaj.add(p7);
+        //        ArrayList<Habitacion> room = new ArrayList<>();
+        //        BienvenidoMenu(admin, recep, pasaj, room);
+//        serializar(pasaj,recep);
+        deSerializar(recep,new File ("empleados.son"));
+        recep.get(0);
+        System.out.println(recep.get(0));
     }
 
     static void BienvenidoMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza) {
@@ -125,7 +138,7 @@ public class TpFinal2 {
 
         switch (seleccion) {
             case 1:
-                AdminMenu(admin, recep, pasaj,pieza);
+                AdminMenu(admin, recep, pasaj, pieza);
 
                 break;
             case 2:
@@ -133,7 +146,7 @@ public class TpFinal2 {
 
                 break;
             case 3:
-                PasajeroMenu(admin, recep, pasaj,pieza);
+                PasajeroMenu(admin, recep, pasaj, pieza);
 
                 break;
             default:
@@ -235,16 +248,16 @@ public class TpFinal2 {
         int seleccion = scanner.nextInt();
         switch (seleccion) {
             case 1:
-                creaAdm(admin,recep,pasaj,room);
+                creaAdm(admin, recep, pasaj, room);
                 break;
             case 2:
-                creaRecep(admin,recep,pasaj,room);
+                creaRecep(admin, recep, pasaj, room);
                 break;
             case 3:
-                creaPasaj(admin,recep,pasaj,room);
+                creaPasaj(admin, recep, pasaj, room);
                 break;
             case 4:
-                AdminMenu(admin, recep, pasaj,room);
+                AdminMenu(admin, recep, pasaj, room);
                 break;
         }
     }
@@ -261,7 +274,7 @@ public class TpFinal2 {
         Administrador nuevo = new Administrador(usuario, contrasenia, nombre, apellido);
         System.out.println("Se ha creado un administrador");
         admin.add(nuevo);
-        MenuCreacion(admin,recep,pasaj,room);
+        MenuCreacion(admin, recep, pasaj, room);
     }
 
     static void creaRecep(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room) {
@@ -276,7 +289,7 @@ public class TpFinal2 {
         Recepcionista nuevo = new Recepcionista(usuario, contrasenia, nombre, apellido);
         System.out.println("Se ha creado un administrador");
         recep.add(nuevo);
-        MenuCreacion(admin,recep,pasaj,room);
+        MenuCreacion(admin, recep, pasaj, room);
     }
 
     static void creaPasaj(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room) {
@@ -297,7 +310,7 @@ public class TpFinal2 {
         Pasajero nuevo = new Pasajero(nombre, apellido, telefono, direccion, email, dni, origen);
         System.out.println("Se ha creado un pasajero");
         pasaj.add(nuevo);
-        MenuCreacion(admin,recep,pasaj,room);
+        MenuCreacion(admin, recep, pasaj, room);
     }
 
     static void nuevaHabitacion() {
@@ -342,7 +355,7 @@ public class TpFinal2 {
                 pasaj.get(eleccion).CancelarReserva(CodigoReserva);
                 break;
             case 3:
-                BienvenidoMenu(admin, recep, pasaj,pieza);
+                BienvenidoMenu(admin, recep, pasaj, pieza);
                 break;
             default:
                 break;
@@ -365,87 +378,98 @@ public class TpFinal2 {
         int seleccion = scanner.nextInt();
         switch (seleccion) {
             case 1:
-                MenuCreacion(admin,recep,pasaj,pieza); //modificar para que se puedan agregar de tipo recep/admin
-                
+                MenuCreacion(admin, recep, pasaj, pieza); //modificar para que se puedan agregar de tipo recep/admin
+
                 break;
             case 2:
-                serializar(admin,pasaj);
-                AdminMenu(admin,recep,pasaj,pieza);
+                serializar(pasaj, recep);
+                AdminMenu(admin, recep, pasaj, pieza);
                 break;
             case 3:
                 System.out.println(admin.toString());
-                AdminMenu(admin,recep,pasaj,pieza);
+                AdminMenu(admin, recep, pasaj, pieza);
                 break;
             case 4:
-                BienvenidoMenu(admin, recep, pasaj,pieza);
+                BienvenidoMenu(admin, recep, pasaj, pieza);
                 break;
             default:
                 break;
         }
     }
-    public static void serializar (List pasajero, List empleados){
+
+    public static void serializar(ArrayList<Pasajero> pasajero, ArrayList<Recepcionista> empleados) {
         Gson gson = new Gson();
-        String strPasajeros=gson.toJson(pasajero);
-        
-        FileWriter archivoPasajero=null;
-        try{
-        archivoPasajero= new FileWriter("pasajeros.son");
-        archivoPasajero.write(strPasajeros);
-        }catch(IOException e){
-            e.printStackTrace();
-        }finally{
-            if(archivoPasajero != null)
-        {
-            try{
-                archivoPasajero.close();
-            }catch(IOException e){
-                e.printStackTrace();
-            }
+        System.out.println("=== Menu de Backup ===");
+        System.out.println("1. Pasajeros"); // Crea un file de pasajeros
+        System.out.println("2. Empleados"); // No incluye admins
+        System.out.println("0. Salir"); // No incluye admins
+         while (!scanner.hasNextInt()) {
+            System.out.print("Ingrese la opcion: ");
+            scanner.next();
         }
+        int seleccion = scanner.nextInt();
+        switch (seleccion) {
+            case 1:
+                String strPasajeros = gson.toJson(pasajero);
+
+                FileWriter archivoPasajero = null;
+                try {
+                    archivoPasajero = new FileWriter("pasajeros.son");
+                    archivoPasajero.write(strPasajeros);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (archivoPasajero != null) {
+                        try {
+                            archivoPasajero.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                break;
+            case 2:
+                String strEmleados = gson.toJson(empleados);
+
+                FileWriter archivoEmpleado = null;
+                try {
+                    archivoEmpleado = new FileWriter("empleados.son");
+                    archivoEmpleado.write(strEmleados);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (archivoEmpleado != null) {
+                        try {
+                            archivoEmpleado.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                break;
+             }
     }
-        String strEmleados=gson.toJson(empleados);
         
-        FileWriter archivoEmpleado=null;
-        try{
-        archivoEmpleado= new FileWriter("empleados.son");
-        archivoEmpleado.write(strEmleados);
-        }catch(IOException e){
-            e.printStackTrace();
-        }finally{
-            if(archivoEmpleado != null)
-        {
-            try{
-                archivoEmpleado.close();
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-        }
-    }
+        
         
     
+
+    public static void deSerializar(List p, File file) throws FileNotFoundException {
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        Gson gson = new Gson();
+
+        FileReader reader = null;
+        try {
+            reader = new FileReader(file);
+            List deser = gson.fromJson(bufferedReader, List.class);
+
+            for (int i = 0; i < deser.size(); i++) {
+                System.out.println(deser.get(i));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
-    
-//
-//    }
-//    public static void deSerializar (ArrayList<Pasajero> p) throws FileNotFoundException{
-//        
-//        BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("pasajeros.son")));
-//        Gson gson = new Gson();
-//        List<Pasajero> pasaj = gson.fromJson(bufferedReader, new TypeToken<ArrayList<Pasajero>>(){}.getType());  
-//        FileReader reader=null;
-//        try{
-//        reader= new FileReader("pasajeros.son");
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }finally{
-//            if(reader != null)
-//        {
-//            try{
-//                reader.close();
-//            }catch(IOException e){
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
