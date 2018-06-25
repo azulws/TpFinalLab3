@@ -16,6 +16,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import jdk.internal.org.objectweb.asm.TypeReference;
 import com.google.gson.reflect.TypeToken;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static tp.final2.TpFinal2.MenuHabitaciones;
 
 //    BienvenidoMenu menu = new  BienvenidoMenu();
@@ -107,20 +109,98 @@ public class TpFinal2 {
     {
         ArrayList<Recepcionista> recep = new ArrayList<>();
         Recepcionista r1 = new Recepcionista("agustindominguez95@hotmail.com", "123", "Agustin", "Dominguez");
-        Recepcionista r2 = new Recepcionista("azulgotero@hotmail.com", "123", "azul", "gotero");
         recep.add(r1);
-        recep.add(r2);
+        ArrayList<Administrador> admin = new ArrayList<>();
+        Administrador r2 = new Administrador("azulgotero@hotmail.com", "123", "azul", "gotero");
+        admin.add(r2);
         ArrayList<Pasajero> pasaj = new ArrayList<>();
-        Pasajero p6 = new Pasajero("susana", "gimenez", 2237, "colon 4127", "susana@hotmail.com", "39336482", "argentina");
-        Pasajero p7 = new Pasajero("marcelo", "tineli", 2238, "colon 5041", "marcelo@hotmail.com", "33315151", "argentina");
+        Pasajero p1 = new Pasajero("susana", "gimenez", 156987456, "Colon 4127", "susana@hotmail.com", "16981236", "argentina");
+        Pasajero p2 = new Pasajero("marcelo", "tineli", 156987423, "Las canitas 5041", "marcelo@hotmail.com", "33315151", "argentina");
+        Pasajero p3 = new Pasajero("pablo", "hernandez", 15435741, "Portugal 1975", "niggaman@hotmail.com", "39336482", "argentina");
+        Pasajero p4 = new Pasajero("matias", "jauregui", 15479632, "Arrue 2030", "matias@hotmail.com", "39180520", "argentina");
+        Pasajero p5 = new Pasajero("leonel", "bedoya", 155025416, "Termas de Rio Hondo 8070", "leonelabedoya@hotmail.com", "41369963", "argentina");
+        Pasajero p6 = new Pasajero("kevin", "gandola", 156987412, "Brasil 3050", "kevgand@hotmail.com", "41123223", "argentina");
+        Pasajero p7 = new Pasajero("braian", "garofalo", 155011360, "3 de febrero 1598", "windh@hotmail.com", "41366878", "argentina");
+        Pasajero p8 = new Pasajero("tamara", "sarjen", 154213692, "Nasser 7532", "tamisanjen@hotmail.com", "41412369", "italia");
+        Pasajero p9 = new Pasajero("nadia", "balagui", 156999741, "Calaza 9060", "nadu@hotmail.com", "41355874", "argentina");
+        Pasajero p10 = new Pasajero("aaron", "gandola", 155569822, "Hillia 50", "aawolf@hotmail.com", "42332147", "argentina");
+        Pasajero p11 = new Pasajero("sonia", "martinez", 154000369, "Santa fe 930", "soomartinez@hotmail.com", "17587111", "francia");
+        Pasajero p12 = new Pasajero("elizabeth", "dip", 156215798, "Belgrano 6454", "dipeli@hotmail.com", "16685789", "argentina");
+        Pasajero p13 = new Pasajero("norma", "bedoya", 155213698, "Lucas Cordoba 769", "normabedoya@hotmail.com", "17666984", "argentina");
+        Pasajero p14 = new Pasajero("estela", "ferrari", 154123456, "Libertad 6594", "ferrariestela@hotmail.com", "14222333", "argentina");
+        Pasajero p15 = new Pasajero("claudia", "garcia", 156320587, "Tomas c. Guido 3478", "claueligarcia@hotmail.com", "18987412", "argentina");
+        Pasajero p16 = new Pasajero("emiliano", "loza", 154364782, "Av. Dr. Arturo Alió 1932", "lozares@hotmail.com", "40363547", "argentina");
+        Pasajero p17 = new Pasajero("juan", "perez", 155333111, "Valencia 985", "jecp@hotmail.com", "39201678", "españa");
+        Pasajero p18 = new Pasajero("micaela", "puchia", 156987789, "Chubut 1731", "mikup@hotmail.com", "40236987", "chile");
+        Pasajero p19 = new Pasajero("cinthia", "gomez", 154210364, "Lijo Lopez 1503", "cintgo@hotmail.com", "35698741", "uruguay");
+        Pasajero p20 = new Pasajero("irene", "laviuzza", 155451230, "Bahia Blanca 1838", "irenelaviuzzamat@hotmail.com", "8201123", "argentina");
+        pasaj.add(p1);
+        pasaj.add(p2);
+        pasaj.add(p3);
+        pasaj.add(p4);
+        pasaj.add(p5);
         pasaj.add(p6);
         pasaj.add(p7);
-        //        ArrayList<Habitacion> room = new ArrayList<>();
-        //        BienvenidoMenu(admin, recep, pasaj, room);
-//        serializar(pasaj,recep);
-        deSerializar(recep,new File ("empleados.son"));
-        recep.get(0);
-        System.out.println(recep.get(0));
+        pasaj.add(p8);
+        pasaj.add(p9);
+        pasaj.add(p10);
+        pasaj.add(p11);
+        pasaj.add(p12);
+        pasaj.add(p13);
+        pasaj.add(p14);
+        pasaj.add(p15);
+        pasaj.add(p16);
+        pasaj.add(p17);
+        pasaj.add(p18);
+        pasaj.add(p19);
+        pasaj.add(p20);
+        ArrayList<Habitacion> room = new ArrayList<>();
+        Habitacion ro1 = new Habitacion(1, Habitacion.Tipo.INDIVIDUAL);
+        Habitacion ro2 = new Habitacion(2, Habitacion.Tipo.DOBLE);
+        Habitacion ro3 = new Habitacion(3, Habitacion.Tipo.SUITES);
+        Habitacion ro4 = new Habitacion(4, Habitacion.Tipo.TRIPLE);
+        Habitacion ro5 = new Habitacion(5, Habitacion.Tipo.INDIVIDUAL);
+        Habitacion ro6 = new Habitacion(6, Habitacion.Tipo.DOBLE);
+        Habitacion ro7 = new Habitacion(7, Habitacion.Tipo.SUITES);
+        Habitacion ro8 = new Habitacion(8, Habitacion.Tipo.TRIPLE);
+        Habitacion ro9 = new Habitacion(9, Habitacion.Tipo.INDIVIDUAL);
+        Habitacion ro10 = new Habitacion(10, Habitacion.Tipo.DOBLE);
+        Habitacion ro11 = new Habitacion(11, Habitacion.Tipo.SUITES);
+        Habitacion ro12 = new Habitacion(12, Habitacion.Tipo.TRIPLE);
+        Habitacion ro13 = new Habitacion(13, Habitacion.Tipo.INDIVIDUAL);
+        Habitacion ro14 = new Habitacion(14, Habitacion.Tipo.DOBLE);
+        Habitacion ro15 = new Habitacion(15, Habitacion.Tipo.SUITES);
+        Habitacion ro16 = new Habitacion(16, Habitacion.Tipo.TRIPLE);
+        Habitacion ro17 = new Habitacion(17, Habitacion.Tipo.INDIVIDUAL);
+        Habitacion ro18 = new Habitacion(18, Habitacion.Tipo.DOBLE);
+        Habitacion ro19 = new Habitacion(19, Habitacion.Tipo.SUITES);
+        Habitacion ro20 = new Habitacion(20, Habitacion.Tipo.TRIPLE);
+        ArrayList<Reserva> reserva = new ArrayList<>();
+        room.add(ro1);
+        room.add(ro2);
+        room.add(ro3);
+        room.add(ro4);
+        room.add(ro5);
+        room.add(ro6);
+        room.add(ro7);
+        room.add(ro8);
+        room.add(ro9);
+        room.add(ro10);
+        room.add(ro11);
+        room.add(ro12);
+        room.add(ro13);
+        room.add(ro14);
+        room.add(ro15);
+        room.add(ro16);
+        room.add(ro17);
+        room.add(ro18);
+        room.add(ro19);
+        room.add(ro20);
+        BienvenidoMenu(admin, recep, pasaj, room);
+        // serializar(pasaj,recep);
+//        deSerializar(room,new File ("pasajeros.son"));
+//        recep.get(0);
+        //System.out.println(recep.get(0));
     }
 
     static void BienvenidoMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza) {
@@ -158,10 +238,9 @@ public class TpFinal2 {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("=== Menu de Habitaciones ===");
-        System.out.println("1 habitacion"); // Muestra todas las habitaciones
-        System.out.println("2. Ver todas"); // Muestra todas las habitaciones
-        System.out.println("3. Ver disponibles"); // Muestra todas las habitaciones disponibles
-        System.out.println("4. Menu Recepcionista"); //Vuelve al menu de Administrador
+        System.out.println("1. Ver todas"); // Muestra todas las habitaciones
+        System.out.println("2. Ver disponibles"); // Muestra todas las habitaciones disponibles
+        System.out.println("3. Menu Recepcionista"); //Vuelve al menu de Administrador
         System.out.print("Ingrese la opcion: ");
 
         while (!scanner.hasNextInt()) {
@@ -173,19 +252,23 @@ public class TpFinal2 {
 
         switch (seleccion) {
             case 1:
-
-                nuevaHabitacion();
+                System.out.println(room);
+                MenuHabitaciones(room, admin, recep, pasaj, room);
                 break;
-
             case 2:
-                System.out.println(room.toString());
+                mostrarhabitacionesdisponibles(room);
                 break;
             case 3:
-
-                break;
-            case 4:
                 RecepcionistaMenu(admin, recep, pasaj, pieza);
                 break;
+        }
+    }
+
+    static void mostrarhabitacionesdisponibles(ArrayList<Habitacion> room) {
+        for (Habitacion habitacion : room) {
+            if (habitacion.getEstado() == habitacion.estado.DISPONIBLE) {
+                System.out.println(habitacion);
+            }
         }
     }
 
@@ -195,8 +278,9 @@ public class TpFinal2 {
         System.out.println("1. Realizar CheckIN");
         System.out.println("2. Realizar CheckOUT");
         System.out.println("3. Realizar Reservas");
-        System.out.println("4. Listado de Habitaciones disponibles");
-        System.out.println("5. Volver Menu principal");
+        System.out.println("4. Mostrar recepcionistas");
+        System.out.println("5. Listado de Habitaciones disponibles");
+        System.out.println("6. Volver Menu principal");
         System.out.print("Ingrese la opcion: ");
 
         while (!scanner.hasNextInt()) {
@@ -204,23 +288,40 @@ public class TpFinal2 {
             scanner.next();
         }
         int seleccion = scanner.nextInt();
-        int eleccion;
-        System.out.println("Eleccion del recepcionista:");
-        eleccion = scanner.nextInt();
+
         switch (seleccion) {
             case 1:
-
                 System.out.println("Ingrese numero de habitacion para el checkin:");
                 int NumeroHabitacioncheckin = scanner.nextInt();
-                recep.get(eleccion).checkIn(NumeroHabitacioncheckin);
+                recep.get(1).checkIn(NumeroHabitacioncheckin);
+                RecepcionistaMenu(admin, recep, pasaj, room);
             case 2: // Realizar checkout
                 System.out.println("Ingrese numero de habitacion para el checkout:");
                 int NumeroHabitacion = scanner.nextInt();
-                recep.get(eleccion).checkout(NumeroHabitacion);
+                recep.get(1).checkout(NumeroHabitacion);
+                RecepcionistaMenu(admin, recep, pasaj, room);
                 break;
-            case 4:  // Realizar Reservas
-                //recep.get(eleccion).alquiler();
+            case 3:  // Realizar Reservas
+                System.out.println("Ingrese numero de reserva:");
+                int numerodereserva = scanner.nextInt();
+                System.out.println("Ingrese numero de dni:");
+                String dni = scanner.next();
+                System.out.println("Elija una habitacion para la reserva:");
+                int habitacion = scanner.nextInt();
+                System.out.println("Elija una pasajero para la reserva:");
+                int pasajero = scanner.nextInt();
+                 {
+                    try {
+                        recep.get(12).alquiler(numerodereserva, dni, room.get(habitacion), pasaj.get(pasajero));
+                    } catch (PasajeroNoEncontradoException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+                RecepcionistaMenu(admin, recep, pasaj, room);
                 break;
+            case 4:
+                System.out.println(recep.toString());
+                RecepcionistaMenu(admin, recep, pasaj, room);
             case 5:
                 MenuHabitaciones(room, admin, recep, pasaj, room);
                 break;
@@ -313,18 +414,6 @@ public class TpFinal2 {
         MenuCreacion(admin, recep, pasaj, room);
     }
 
-    static void nuevaHabitacion() {
-        ArrayList<Habitacion> room = new ArrayList<>();
-        for (int a = 1; a < 21; a++) {
-            room.add(new Habitacion(a, Habitacion.Tipo.INDIVIDUAL));
-            room.add(new Habitacion(a, Habitacion.Tipo.DOBLE));
-            room.add(new Habitacion(a, Habitacion.Tipo.SUITES));
-            room.add(new Habitacion(a, Habitacion.Tipo.TRIPLE));
-
-        }
-
-    }
-
     static void PasajeroMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza) {
 
         System.out.println("=== Menu de Pasajero ===");
@@ -340,19 +429,27 @@ public class TpFinal2 {
         }
         int seleccion = scanner.nextInt();
         int eleccion;
-        System.out.println("Eleccion del Pasajero:");
-        eleccion = scanner.nextInt();
         switch (seleccion) {
 
-            case 1:
+            case 1: {
+                System.out.println("----------------Pasajeros cargados en el sistema----------------");
+                try {
+                    deSerializar(admin, new File("pasajeros.son"));
+                } catch (FileNotFoundException ex) {
 
-                System.out.println(pasaj.toString());
-
-                break;
+                }
+            }
+            System.out.println("----------------Pasajeros nuevos----------------");
+            System.out.println(pasaj.toString());
+            PasajeroMenu(admin, recep, pasaj, pieza);
+            break;
             case 2:
+                System.out.println("Eleccion del Pasajero:");
+                eleccion = scanner.nextInt();
                 System.out.println("Ingrese codigo de reserva");
                 int CodigoReserva = scanner.nextInt();
                 pasaj.get(eleccion).CancelarReserva(CodigoReserva);
+                PasajeroMenu(admin, recep, pasaj, pieza);
                 break;
             case 3:
                 BienvenidoMenu(admin, recep, pasaj, pieza);
@@ -366,7 +463,7 @@ public class TpFinal2 {
 
         System.out.println("=== Menu de Administrador ===");
         System.out.println("1. Agregar Usuario"); // Crea una persona de tipo admin-recep-pasajero
-        System.out.println("2. Crear backup usuarios"); //Crea un archivo con todos los usuarios registrados en el hotel (incluye empleados)
+        System.out.println("2. Crear backup"); //Crea un archivo con todos los usuarios registrados en el hotel (incluye empleados)
         System.out.println("3. Mostrar Administrador"); //Vuelve al menu de Administrador
         System.out.println("4. Volver Menu principal");
         System.out.print("Ingrese la opcion: ");
@@ -403,7 +500,7 @@ public class TpFinal2 {
         System.out.println("1. Pasajeros"); // Crea un file de pasajeros
         System.out.println("2. Empleados"); // No incluye admins
         System.out.println("0. Salir"); // No incluye admins
-         while (!scanner.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             System.out.print("Ingrese la opcion: ");
             scanner.next();
         }
@@ -447,12 +544,8 @@ public class TpFinal2 {
                     }
                 }
                 break;
-             }
+        }
     }
-        
-        
-        
-    
 
     public static void deSerializar(List p, File file) throws FileNotFoundException {
 

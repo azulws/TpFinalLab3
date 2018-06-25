@@ -31,7 +31,7 @@ public class Administrador extends Persona {
 
     @Override
     public String toString() {
-        return "Administrador{" + "clientes=" + clientes + ", administracion=" + administracion + ", usuario=" + usuario + '}';
+        return "Administrador{"+ ", usuario=" + usuario + '}';
     }
 
 }

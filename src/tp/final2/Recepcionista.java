@@ -75,7 +75,10 @@ public class Recepcionista extends Persona {
             }
             return alquiler;
         }
-        return null;
+        else
+        {
+           throw new PasajeroNoEncontradoException("no se encontro"); 
+        }
     }
 
     public Habitacion libre() {
