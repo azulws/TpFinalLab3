@@ -27,21 +27,6 @@ public class Administrador extends Persona {
         return usuario;
     }
 
-  
-    
-    /**
-     *  Funcion auxiliar que, si un pasajero, no esta registrado, lo agrega, si lo esta arroja una exception
-     * @throws PersonaDuplicadaException
-     * @param p es un pasajero
-     */
-
-    public void agregarCliente(Pasajero p) throws PersonaDuplicadaException {
-        if (this.clientes.contains(p)) {
-            throw new PersonaDuplicadaException();
-        }
-        this.clientes.add(p);
-    }
-
     @Override
     public String toString() {
         return "Administrador{"+ ", usuario=" + usuario + '}';
