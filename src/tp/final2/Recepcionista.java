@@ -31,9 +31,6 @@ public class Recepcionista extends Persona {
         return usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
-    }
 
      /**
  * Busca un pasajero por dni en la lista de clientes y lo retorna, caso contrario retorna una exception

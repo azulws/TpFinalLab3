@@ -48,9 +48,7 @@ public class Pasajero extends Persona {
         return Pedido;
     }
 
-    public ArrayList<Habitacion> getPieza() {
-        return pieza;
-    }
+  
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
@@ -72,13 +70,7 @@ public class Pasajero extends Persona {
         this.origen = origen;
     }
 
-    public void setPedido(ArrayList<Reserva> Pedido) {
-        this.Pedido = Pedido;
-    }
 
-    public void setPieza(ArrayList<Habitacion> pieza) {
-        this.pieza = pieza;
-    }
     
     
  /**
@@ -125,7 +117,7 @@ public class Pasajero extends Persona {
 
     @Override
     public String toString() {
-        return "Pasajero{" + "nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion=" + direccion + ", email=" + email + ", dni=" + dni + ", origen=" + origen + ", Pedido=" + Pedido + ", pieza=" + pieza + '}';
+        return "Pasajero{" + "nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion=" + direccion + ", email=" + email + ", dni=" + dni + ", origen=" + origen +'}';
     }
 
     

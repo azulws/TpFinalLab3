@@ -26,7 +26,6 @@ public class Habitacion extends Hotel {
     }
 
     public Habitacion(int NumeroHabitacion,Tipo tipo) {
-        super();
         this.NumeroHabitacion = NumeroHabitacion;
         this.estado = this.estado.DISPONIBLE;
         this.tipo = tipo;

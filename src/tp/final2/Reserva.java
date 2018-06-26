@@ -32,42 +32,26 @@ public class Reserva extends Habitacion {
         return codigoReserva;
     }
 
-    public void setCodigoReserva(int codigoReserva) {
-        this.codigoReserva = codigoReserva;
-    }
 
     public LocalDate getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(LocalDate entrada) {
-        this.entrada = entrada;
-    }
 
     public LocalDate getSalida() {
         return salida;
     }
 
-    public void setSalida(LocalDate salida) {
-        this.salida = salida;
-    }
 
     public Habitacion getPieza() {
         return pieza;
     }
 
-    public void setPieza(Habitacion pieza) {
-        this.pieza = pieza;
-    }
 
     public Pasajero getClientes() {
         return clientes;
     }
 
-    public void setClientes(Pasajero clientes) {
-        this.clientes = clientes;
-    }
-   
  
     
     @Override

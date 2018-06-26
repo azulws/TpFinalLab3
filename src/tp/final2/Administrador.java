@@ -12,7 +12,6 @@ import java.util.*;
 public class Administrador extends Persona {
     
     private List<Pasajero> clientes;
-    private List<Administrador> administracion;
     private String usuario;
     private String contraseña;
 
@@ -20,14 +19,15 @@ public class Administrador extends Persona {
     public Administrador(String usuario, String contraseña, String nombre, String apellido) {
         super(nombre, apellido);
         this.clientes = clientes;
-        this.administracion = administracion;
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getUsuario() {
+        return usuario;
     }
+
+  
     
     /**
      *  Funcion auxiliar que, si un pasajero, no esta registrado, lo agrega, si lo esta arroja una exception
