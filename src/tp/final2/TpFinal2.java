@@ -441,8 +441,6 @@ public class TpFinal2 {
 
                 }
             }
-            System.out.println("----------------Pasajeros nuevos----------------");
-            System.out.println(pasaj.toString());
             PasajeroMenu(admin, recep, pasaj, pieza, reserva);
             break;
             case 2:
