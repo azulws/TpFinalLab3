@@ -169,9 +169,10 @@ public class TpFinal2 {
         System.out.println("3. Realizar Reservas");
         System.out.println("4. Realizar tareas sobre habitacion");
         System.out.println("5. Mostrar recepcionistas");
+        System.out.println("6. Mostrar Pasajeros");
         System.out.println("6. Menu habitaciones");
         System.out.println("7. Modificar pasajero");
-        System.out.println("8. Volver Menu principal");
+        System.out.println("0. Volver Menu principal");
         System.out.print("Ingrese la opcion: ");
 
         while (!scanner.hasNextInt()) {
@@ -221,9 +222,19 @@ public class TpFinal2 {
                 System.out.println(recep.toString());
                 RecepcionistaMenu(admin, recep, pasaj, room, reserva);
             case 6:
+                {
+                System.out.println("----------------Pasajeros cargados en el sistema----------------");
+                try {
+                    deSerializar(admin, new File("pasajeros.son"));
+                } catch (FileNotFoundException ex) {
+
+                }
+            }
+            RecepcionistaMenu(admin, recep, pasaj, room, reserva);
+            case 7:
                 MenuHabitaciones(room, admin, recep, pasaj, reserva);
                 break;
-            case 7:
+            case 8:
                 System.out.println("Ingrese numero de dni para la modificacion:");
                 String dny = scanner.next();
                 System.out.println("Ingrese al cliente a modificar:");
@@ -236,7 +247,7 @@ public class TpFinal2 {
                 }
 
                 break;
-            case 8:
+            case 0:
                 BienvenidoMenus(admin, recep, pasaj, room, reserva);
             default:
                 break;
@@ -420,9 +431,8 @@ public class TpFinal2 {
     static void PasajeroMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza, ArrayList<Reserva> reserva) {
 
         System.out.println("=== Menu de Pasajero ===");
-        System.out.println("1. Mostrar pasajeros"); // Muestra lista pasajeros
-        System.out.println("2. Cancelar Reserva"); //Cancela la reserva
-        System.out.println("3. Volver Menu principal");
+        System.out.println("1. Cancelar Reserva"); //Cancela la reserva
+        System.out.println("0. Volver Menu principal");
         System.out.print("Ingrese la opcion: ");
 
         while (!scanner.hasNextInt()) {
@@ -432,18 +442,7 @@ public class TpFinal2 {
         int seleccion = scanner.nextInt();
         int eleccion;
         switch (seleccion) {
-
-            case 1: {
-                System.out.println("----------------Pasajeros cargados en el sistema----------------");
-                try {
-                    deSerializar(admin, new File("pasajeros.son"));
-                } catch (FileNotFoundException ex) {
-
-                }
-            }
-            PasajeroMenu(admin, recep, pasaj, pieza, reserva);
-            break;
-            case 2:
+            case 1:
                 System.out.println("Eleccion del Pasajero:");
                 eleccion = scanner.nextInt();
                 System.out.println("Ingrese codigo de reserva");
@@ -451,7 +450,7 @@ public class TpFinal2 {
                 pasaj.get(eleccion).CancelarReserva(CodigoReserva);
                 PasajeroMenu(admin, recep, pasaj, pieza, reserva);
                 break;
-            case 3:
+            case 0:
                 BienvenidoMenus(admin, recep, pasaj, pieza, reserva);
                 break;
             default:
