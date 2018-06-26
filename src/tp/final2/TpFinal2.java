@@ -20,13 +20,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static tp.final2.TpFinal2.MenuHabitaciones;
 
-
 public class TpFinal2 {
+    
+    /**
+ * 
+ * @author agustin caceres
+ * @author agustin dominguez
+ * @author azul gottero
+ */
 
     private static Scanner scanner = new Scanner(System.in);
 
     
-    public static void main(String[] args) throws FileNotFoundException //throws FileNotFoundException 
+   /**
+     *  Main, se crean las listas que vamos a utilizar.
+     * @throws FileNotFoundException
+     */
+    public static void main(String[] args) throws FileNotFoundException
     {
 
         Hotel hotel=new Hotel();
@@ -37,6 +47,11 @@ public class TpFinal2 {
         ArrayList<Reserva> reserva=new ArrayList<>();
         Bienvenidos(hotel, admin, recep, pasaj, pieza, reserva);
     }
+    
+    
+    /**
+     * Recibe 1 hotel y las listas necesarias para invocar el menu
+     */
     static void Bienvenidos(Hotel hotel,ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza, ArrayList<Reserva> reserva)
     {
         System.out.println("=== Bienvenido al Hotel===");
@@ -44,7 +59,10 @@ public class TpFinal2 {
         BienvenidoMenus(admin,recep,pasaj,pieza,reserva);
         
     }
-
+    
+    /**
+     *  Recibe las listas necesarias,y nos proporciona el menu principal
+     */
     static void BienvenidoMenus(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza, ArrayList<Reserva> reserva) {
 
        
@@ -76,6 +94,9 @@ public class TpFinal2 {
         }
     }
 
+    /**
+     *  Menu para realizar distintas operaciones con las habitaciones del hotel
+     */
     static void MenuHabitaciones(ArrayList<Habitacion> room, ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Reserva> reserva) {
         Scanner scanner = new Scanner(System.in);
 
@@ -109,7 +130,10 @@ public class TpFinal2 {
                 break;
         }
     }
-
+    
+    /**
+     *  Funcion auxiliar para la creacion de habitaciones, donde el numero de habitacion se va incrementando
+     */
      static void habitaciones(ArrayList<Habitacion> room) {
         for (int a=1; a<21; a++) {
            room.add(new Habitacion(a,Habitacion.Tipo.INDIVIDUAL)); 
@@ -122,6 +146,10 @@ public class TpFinal2 {
            
         }
     }
+     
+     /**
+     *  Funcion para mostrar el listado de habitaciones disponibles
+     */
     static void mostrarhabitacionesdisponibles(ArrayList<Habitacion> room) {
         for (Habitacion habitacion : room) {
             if (habitacion.getEstado() == habitacion.estado.DISPONIBLE) {
@@ -129,7 +157,10 @@ public class TpFinal2 {
             }
         }
     }
-
+    
+    /**
+     *  Menu para realizar operaciones que corresponden al recepcionista
+     */
     static void RecepcionistaMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room, ArrayList<Reserva> reserva) {
 
         System.out.println("=== Menu de Recepcionista ===");
@@ -212,6 +243,11 @@ public class TpFinal2 {
         }
 
     }
+    
+    /**
+     *  SubMenu para modificar algun dato del pasajero, en caso de ser mal cargado en el sistema.
+     * @throws PasajeroNoEncontradoException
+     */
 
     static void modificarPasajero(ArrayList<Pasajero> pasaj, String dni, int pos) throws PasajeroNoEncontradoException {
         if (pasaj.get(pos).getDni().equals(dni)) {
@@ -284,6 +320,9 @@ public class TpFinal2 {
         throw new PasajeroNoEncontradoException("El pasajero " + pasaj.get(pos) + " no existe");
     }
 
+    /**
+     *  Submenu del Admin, que nos permite crear un usuario de cualqueir tipo
+     */
     static void MenuCreacion(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room, ArrayList<Reserva> reserva) {
 
         System.out.println("=== Menu de Creacion ===");
@@ -315,6 +354,9 @@ public class TpFinal2 {
         }
     }
 
+    /**
+     *  Nos crea un admin y lo agrega a una lista de ese tipo
+     */
     static void creaAdm(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room, ArrayList<Reserva> reserva) {
         System.out.println("Ingrese nombre:");
         String nombre = scanner.next();
@@ -330,6 +372,9 @@ public class TpFinal2 {
         MenuCreacion(admin, recep, pasaj, room, reserva);
     }
 
+    /**
+     *  Nos crea un Recepcionista y lo agrega a una lista de ese tipo
+     */
     static void creaRecep(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room, ArrayList<Reserva> reserva) {
         System.out.println("Ingrese nombre:");
         String nombre = scanner.next();
@@ -345,6 +390,9 @@ public class TpFinal2 {
         MenuCreacion(admin, recep, pasaj, room, reserva);
     }
 
+    /**
+     *  Nos crea un pasajero y lo agrega a una lista de ese tipo
+     */
     static void creaPasaj(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> room, ArrayList<Reserva> reserva) {
         System.out.println("Ingrese nombre:");
         String nombre = scanner.next();
@@ -366,6 +414,9 @@ public class TpFinal2 {
         MenuCreacion(admin, recep, pasaj, room, reserva);
     }
 
+    /**
+     *  Menu del pasajero, solo podremos cancelar la reserva
+     */
     static void PasajeroMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza, ArrayList<Reserva> reserva) {
 
         System.out.println("=== Menu de Pasajero ===");
@@ -410,6 +461,9 @@ public class TpFinal2 {
         }
     }
 
+  /**
+     *  Menu del Administrador donde podremos realizar operaciones administrativas
+     */
     static void AdminMenu(ArrayList<Administrador> admin, ArrayList<Recepcionista> recep, ArrayList<Pasajero> pasaj, ArrayList<Habitacion> pieza, ArrayList<Reserva> reserva) {
 
         System.out.println("=== Menu de Administrador ===");
@@ -450,6 +504,9 @@ public class TpFinal2 {
         }
     }
 
+    /**
+     *  Utiliza la libreria de Gson para leer una lista de pasajeros o empleados,segun indiquemos, y guarda el contenido en un archivo
+     */
     public static void backup(ArrayList<Pasajero> pasajero, ArrayList<Recepcionista> empleados) {
         Gson gson = new Gson();
         System.out.println("=== Menu de Backup ===");
@@ -503,6 +560,9 @@ public class TpFinal2 {
         }
     }
 
+    /**
+     *  Serializa una lista de reservas
+     */
     public static void serializarReservas(ArrayList<Reserva> reservacion) {
         Gson gson = new Gson();
         String strReservas = gson.toJson(reservacion);
@@ -523,6 +583,11 @@ public class TpFinal2 {
             }
         }
     }
+    
+    /**
+     *  Deserializa la lista de reservas previamente serializada 
+     * @throws FileNotFoundException
+     */
 
     public static void deSerializar(List p, File file) throws FileNotFoundException {
 

@@ -1,7 +1,12 @@
 package tp.final2;
 
 import java.util.Objects;
-
+ /**
+ * Clase de persona, que actua como clase padre de Recepcionista-Administrador-Pasajero ya que comparten atributos
+ * @author agustin caceres
+ * @author agustin dominguez
+ * @author azul gottero
+ */
 public class Persona {
 
     protected String nombre;
@@ -27,6 +32,10 @@ public class Persona {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+    
+     /**
+ * Hashcode y equals para operaciones de comparacion
+ */
 
     @Override
     public int hashCode() {

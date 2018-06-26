@@ -1,5 +1,10 @@
 package tp.final2;
-
+ /**
+ * En esta clase se establecen los datos principales del hotel
+ * @author agustin caceres
+ * @author agustin dominguez
+ * @author azul gottero
+ */
 public class Hotel {
 
     private String Nombre;

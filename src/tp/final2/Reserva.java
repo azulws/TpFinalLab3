@@ -3,7 +3,12 @@ package tp.final2;
 import java.time.*;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
+ /**
+ * Esta clase recibe, un codigo de reserva (aleatoreo), una fecha de entrada y salida, una habitacion y un pasajero.
+ * @author agustin caceres
+ * @author agustin dominguez
+ * @author azul gottero
+ */
 public class Reserva extends Habitacion {
 
     private int codigoReserva;

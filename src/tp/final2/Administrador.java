@@ -1,6 +1,13 @@
 package tp.final2;
 
 import java.util.*;
+ /**
+ * Esta clase establece los datos del administrador(extiende de persona porque comparte atributos como el nombre y apellido), 
+ * y utilizara una lista de pasajeros para trabajar con ellos.
+ * @author agustin caceres
+ * @author agustin dominguez
+ * @author azul gottero
+ */
 
 public class Administrador extends Persona {
     
@@ -21,6 +28,12 @@ public class Administrador extends Persona {
     public String getContraseña() {
         return contraseña;
     }
+    
+    /**
+     *  Funcion auxiliar que, si un pasajero, no esta registrado, lo agrega, si lo esta arroja una exception
+     * @throws PersonaDuplicadaException
+     * @param p es un pasajero
+     */
 
     public void agregarCliente(Pasajero p) throws PersonaDuplicadaException {
         if (this.clientes.contains(p)) {

@@ -1,7 +1,12 @@
 package tp.final2;
 
 import java.util.*;
-
+ /**
+ * Pasajeros tendra datos unicos necesarios para dar alta en sistema y utilizara una lista de reservas para poder cancelar la misma.
+ * @author agustin caceres
+ * @author agustin dominguez
+ * @author azul gottero
+ */
 public class Pasajero extends Persona {
     private int telefono;
     private String direccion;
@@ -9,7 +14,6 @@ public class Pasajero extends Persona {
     private String dni;
     private String origen;
     private ArrayList<Reserva> Pedido;
-    protected ArrayList<Habitacion> pieza;
 
     public Pasajero(String nombre, String apellido, int telefono, String direccion, String email, String dni, String origen) {
         super(nombre, apellido);
@@ -77,7 +81,10 @@ public class Pasajero extends Persona {
     }
     
     
-
+ /**
+ * Funcion que nos pide un codigodereserva(generado aleatoreamente a cada pasajero) por parametro, para remover una reserva de la lista
+ * CodigoReserva es el codigo de reserva del pasajero
+ */
 
     public void CancelarReserva(int CodigoReserva) {
         for (Reserva Pe : Pedido) {

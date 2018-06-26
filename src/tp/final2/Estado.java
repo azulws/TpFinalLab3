@@ -1,6 +1,11 @@
 
 package tp.final2;
-
+ /**
+ * Enum de tipo clase, con sus respectivos strings.
+ * @author agustin caceres
+ * @author agustin dominguez
+ * @author azul gottero
+ */
 public enum Estado {
     DISPONIBLE("Disponible"),
     NO_DISPONIBLE("No_Disponible"),

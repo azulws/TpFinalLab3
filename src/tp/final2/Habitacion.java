@@ -2,15 +2,22 @@ package tp.final2;
 
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-
+ /**
+ * Habitacion, contendra un numero para cada una, un tipo, un estado y el listado de hab disponibles
+ * @author agustin caceres
+ * @author agustin dominguez
+ * @author azul gottero
+ */
 public class Habitacion extends Hotel {
 
     private int NumeroHabitacion;
     private int ListadoDisponible;
-    private UUID id;
     protected Estado estado;
     protected Tipo tipo;
 
+/**
+ * Enum para indicar el tipo de la habitacion
+ */
     public enum Tipo {
         INDIVIDUAL,
         DOBLE,
