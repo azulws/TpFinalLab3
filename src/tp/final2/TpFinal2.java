@@ -170,8 +170,8 @@ public class TpFinal2 {
         System.out.println("4. Realizar tareas sobre habitacion");
         System.out.println("5. Mostrar recepcionistas");
         System.out.println("6. Mostrar Pasajeros");
-        System.out.println("6. Menu habitaciones");
-        System.out.println("7. Modificar pasajero");
+        System.out.println("7. Menu habitaciones");
+        System.out.println("8. Modificar pasajero");
         System.out.println("0. Volver Menu principal");
         System.out.print("Ingrese la opcion: ");
 
