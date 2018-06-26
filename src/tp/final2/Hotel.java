@@ -8,16 +8,15 @@ public class Hotel {
     private String Direccion;
     private String Email;
 
-    public Hotel(String Nombre, int Estrella, int Telefono, String Direccion, String Email) {
-        this.Nombre = Nombre;
-        this.Estrella = Estrella;
-        this.Telefono = Telefono;
-        this.Direccion = Direccion;
-        this.Email = Email;
+    public Hotel() {
+        this.Nombre = "Hans Brinker Budget";
+        this.Estrella = 2;
+        this.Telefono = 206220687;
+        this.Direccion =  " Kerkstraat 136";
+        this.Email ="HansBrinkerBudget@hotmail.com";
     }
 
-    public Hotel() {
-    }
+    
     
 
     public String getNombre() {
